@@ -12,29 +12,29 @@
 extern void * alloca (size_t __size);
 #endif
 
-#define INLINE __attribute__((always_inline))
+#define INLINE __attribute__((always_inline)) inline
 #define NOINLINE __attribute__((noinline))
 
-static INLINE inline void unaligned_w64(void *ptr, uint64_t val) {
+static INLINE void unaligned_w64(void *ptr, uint64_t val) {
     __builtin_memcpy(ptr, &val, 8);
 }
-static INLINE inline void unaligned_w32(void *ptr, uint32_t val) {
+static INLINE void unaligned_w32(void *ptr, uint32_t val) {
     __builtin_memcpy(ptr, &val, 4);
 }
-static INLINE inline void unaligned_w16(void *ptr, uint16_t val) {
+static INLINE void unaligned_w16(void *ptr, uint16_t val) {
     __builtin_memcpy(ptr, &val, 2);
 }
-static INLINE inline uint64_t unaligned_r64(const void *ptr) {
+static INLINE uint64_t unaligned_r64(const void *ptr) {
     uint64_t val;
     __builtin_memcpy(&val, ptr, 8);
     return val;
 }
-static INLINE inline uint32_t unaligned_r32(const void *ptr) {
+static INLINE uint32_t unaligned_r32(const void *ptr) {
     uint32_t val;
     __builtin_memcpy(&val, ptr, 4);
     return val;
 }
-static INLINE inline uint16_t unaligned_r16(const void *ptr) {
+static INLINE uint16_t unaligned_r16(const void *ptr) {
     uint16_t val;
     __builtin_memcpy(&val, ptr, 2);
     return val;
