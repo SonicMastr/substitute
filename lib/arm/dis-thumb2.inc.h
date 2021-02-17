@@ -175,7 +175,8 @@ static INLINE void P(t_bltarget_func_1_tBL)(tdis_ctx ctx, struct bitslice func) 
     unsigned S = crap >> 24 & 1;
     if (!S)
         crap ^= (3 << 22);
-    return P(branch)(ctx, ctx->base.pc + 4 + sext(crap, 25), CC_CALL);
+    /* Set Thumb bit because this call will be transformed into a BLX (reg) */
+    return P(branch)(ctx, (ctx->base.pc + 4 + sext(crap, 25)) | 1, CC_CALL);
 
 }
 static INLINE void P(t_blxtarget_func_1_tBLXi)(tdis_ctx ctx, struct bitslice func) {

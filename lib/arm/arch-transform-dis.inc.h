@@ -197,7 +197,7 @@ void transform_dis_branch(struct transform_dis_ctx *ctx, uint_tptr dpc, int cc) 
     actx.cond = 0xe;
     /* If it's a call, we should jump back after the call */
     if ((cc & CC_CALL) == CC_CALL) {
-        MOVW_MOVT(actx, 14, dpc | ctx->arch.pc_low_bit);
+        MOVW_MOVT(actx, 14, dpc);
         BLXr(actx, 14);
     } else {
         // otherwise we can't clobber LR
