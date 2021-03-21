@@ -11,7 +11,6 @@
 #endif
 
 struct hook_internal {
-    int offset_by_pcdiff[MAX_EXTENDED_PATCH_SIZE + 1];
     uint8_t jump_patch[MAX_JUMP_PATCH_SIZE];
     size_t jump_patch_size;
     void *code;
@@ -21,33 +20,6 @@ struct hook_internal {
     void *trampoline_page;
     struct arch_dis_ctx arch_dis_ctx;
 };
-
-struct pc_callback_info {
-    struct hook_internal *his;
-    size_t nhooks;
-    bool encountered_bad_pc;
-};
-
-static uintptr_t pc_callback(void *ctx, uintptr_t pc) {
-    struct pc_callback_info *restrict info = ctx;
-    uintptr_t real_pc = pc;
-#ifdef __arm__
-    real_pc = pc & ~1;
-#endif
-    for (size_t i = 0; i < info->nhooks; i++) {
-        struct hook_internal *hi = &info->his[i];
-        uintptr_t diff = real_pc - (uintptr_t) hi->code;
-        if (diff < hi->jump_patch_size) {
-            int offset = hi->offset_by_pcdiff[diff];
-            if (offset == -1) {
-                info->encountered_bad_pc = true;
-                return pc;
-            }
-            return (uintptr_t) hi->outro_trampoline + offset;
-        }
-    }
-    return pc;
-}
 
 /* Figure out the size of the patch we need to jump from pc_patch_start
  * to hook->replacement.
@@ -247,7 +219,7 @@ int substitute_hook_functions(const struct substitute_function_hook *hooks,
         trampoline_prev = trampoline_ptr;
         if ((ret = transform_dis_main(code, &trampoline_ptr, pc_patch_start,
                                       &pc_patch_end, trampoline_addr,
-                                      &arch, hi->offset_by_pcdiff,
+                                      &arch,
                                       (thread_safe ? TRANSFORM_DIS_BAN_CALLS : 0) | 
                                       (relaxed ? 0 : TRANSFORM_DIS_REL_JUMPS))))
             goto end;
@@ -303,14 +275,9 @@ int substitute_hook_functions(const struct substitute_function_hook *hooks,
         }
     }
 
-    struct pc_callback_info info = {his, nhooks, false};
-    if ((ret = execmem_foreign_write_with_pc_patch(
-            fws, nhooks, thread_safe ? pc_callback : NULL, &info))) {
+    ret = execmem_foreign_write_with_pc_patch(fws, nhooks);
+    if (ret) {
         /* Too late to free the trampolines.  Chances are this is fatal anyway. */
-        goto end_dont_free;
-    }
-    if (info.encountered_bad_pc) {
-        ret = SUBSTITUTE_ERR_UNEXPECTED_PC_ON_OTHER_THREAD;
         goto end_dont_free;
     }
 
@@ -343,7 +310,7 @@ int substitute_free_hooks(struct substitute_function_hook_record *records,
         cur = (struct substitute_function_hook_record *)((char *)&cur->saved_buffer + cur->buffer_size);
     }
     /* TODO: Fix the case when thread is inside a patch/trampoline. */
-    ret = execmem_foreign_write_with_pc_patch(fws, nhooks, NULL, NULL);
+    ret = execmem_foreign_write_with_pc_patch(fws, nhooks);
     free(records);
     return ret;
 }

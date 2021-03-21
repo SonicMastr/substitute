@@ -18,6 +18,4 @@ struct execmem_foreign_write {
 };
 typedef uintptr_t (*execmem_pc_patch_callback)(void *ctx, uintptr_t pc);
 int execmem_foreign_write_with_pc_patch(struct execmem_foreign_write *writes,
-                                        size_t nwrites,
-                                        execmem_pc_patch_callback callback,
-                                        void *callback_ctx);
+                                        size_t nwrites);

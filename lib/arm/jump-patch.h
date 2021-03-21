@@ -2,7 +2,6 @@
 #include "dis.h"
 #include "arm/assemble.h"
 #define MAX_JUMP_PATCH_SIZE 10
-#define MAX_EXTENDED_PATCH_SIZE (MAX_JUMP_PATCH_SIZE+14)
 
 static inline int jump_patch_size(uint_tptr pc,
                                   UNUSED uint_tptr dpc,

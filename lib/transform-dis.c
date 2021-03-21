@@ -94,7 +94,6 @@ int transform_dis_main(const void *restrict code_ptr,
                        uint_tptr *pc_patch_end_p,
                        uint_tptr pc_trampoline,
                        struct arch_dis_ctx *arch_ctx_p,
-                       int *offset_by_pcdiff,
                        int options) {
     struct transform_dis_ctx ctx;
     memset(&ctx, 0, sizeof(ctx));
@@ -109,7 +108,6 @@ int transform_dis_main(const void *restrict code_ptr,
     ctx.rewritten_ptr_ptr = rewritten_ptr_ptr;
     void *rewritten_start = *rewritten_ptr_ptr;
     int written_pcdiff = 0;
-    offset_by_pcdiff[written_pcdiff++] = 0;
     while (ctx.base.pc < ctx.pc_patch_end && !ctx.force_keep_transforming) {
         ctx.base.modify = false;
         ctx.err = 0;
@@ -145,12 +143,6 @@ int transform_dis_main(const void *restrict code_ptr,
         ctx.base.pc += ctx.base.op_size;
 
         transform_dis_post_dis(&ctx);
-
-        int pcdiff = ctx.base.pc - ctx.pc_patch_start;
-        while (written_pcdiff < pcdiff)
-            offset_by_pcdiff[written_pcdiff++] = -1;
-        offset_by_pcdiff[written_pcdiff++] =
-                (int) (*rewritten_ptr_ptr - rewritten_start);
     }
     *pc_patch_end_p = ctx.base.pc;
     *arch_ctx_p = ctx.arch;

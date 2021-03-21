@@ -112,15 +112,11 @@ void execmem_free(void *ptr, void *opt) {
  *
  * @param      writes        List of writes
  * @param[in]  nwrites       Number of writes
- * @param[in]  callback      Unused
- * @param      callback_ctx  Unused
  *
  * @return     `SUBSTITUTE_OK` or `SUBSTITUTE_ERR_VM` on failure
  */
 int execmem_foreign_write_with_pc_patch(struct execmem_foreign_write *writes,
-                                        size_t nwrites,
-                                        UNUSED execmem_pc_patch_callback callback,
-                                        UNUSED void *callback_ctx) {
+                                        size_t nwrites) {
     LOG("Patching exec memory: %d", nwrites);
     for (int i = 0; i < nwrites; i++) {
         struct slab_chain *slab = (struct slab_chain *)writes[i].opt;
