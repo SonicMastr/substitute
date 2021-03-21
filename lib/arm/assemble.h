@@ -120,16 +120,15 @@ static inline void Bccrel(struct assemble_ctx ctx, int offset) {
 }
 
 static inline void LDR_PC(struct assemble_ctx ctx, uint32_t dpc) {
-    int align = !!(actx_pc(ctx) & 2);
-    if (align)
+    if (actx_pc(ctx) & 2) {
+        substitute_assert(ctx.thumb);
         op16(ctx.codep, 0xbf00);
+    }
     if (ctx.thumb)
         op32(ctx.codep, 0xf000f8df);
     else
         op32(ctx.codep, 0x051ff004 | ctx.cond << 28);
     op32(ctx.codep, (uint32_t) dpc);
-    if (align)
-        op16(ctx.codep, 0xbf00);
 }
 
 static inline void ADD_PC(struct assemble_ctx ctx, uint32_t Rd, uint32_t imm12) {
