@@ -21,90 +21,6 @@ struct hook_internal {
     struct arch_dis_ctx arch_dis_ctx;
 };
 
-/* Figure out the size of the patch we need to jump from pc_patch_start
- * to hook->replacement.
- * On ARM, we can jump anywhere in 8 bytes.  On ARM64, we can only do it in two
- * or three instructions if the destination PC is within 4GB or so of the
- * source.  We *could* just brute force it by adding more instructions, but
- * this increases the chance of problems caused by patching too much of the
- * function.  Instead, since we should be able to mmap a trampoline somewhere
- * in that range, we'll stop there on the way to.
- * In order of preference:
- * - Jump directly.
- * - Jump using a trampoline to be placed at our existing trampoline_ptr.
- * - Allocate a new trampoline_ptr, using the target as a hint, and jump there.
- * If even that is out of range, then return an error code.
- */
-
-static int check_intro_trampoline(void **trampoline_ptr_p,
-                                  uintptr_t *trampoline_addr_p, 
-                                  size_t *trampoline_size_left_p,
-                                  uintptr_t pc,
-                                  uintptr_t dpc,
-                                  int *patch_size_p,
-                                  bool *need_intro_trampoline_p,
-                                  void **trampoline_page_p,
-                                  struct arch_dis_ctx arch,
-                                  void *opt) {
-    void *trampoline_ptr = *trampoline_ptr_p;
-    uintptr_t trampoline_addr = *trampoline_addr_p;
-    size_t trampoline_size_left = *trampoline_size_left_p;
-
-    /* Try direct */
-    *need_intro_trampoline_p = false;
-    *patch_size_p = jump_patch_size(pc, dpc, arch, /*force*/ false);
-    if (*patch_size_p != -1)
-        return SUBSTITUTE_OK;
-
-    *need_intro_trampoline_p = true;
-
-    if (trampoline_ptr) {
-        /* Try existing trampoline */
-        *patch_size_p = jump_patch_size(pc, trampoline_addr, arch,
-                                        false);
-
-        if (*patch_size_p != -1 && (size_t) *patch_size_p
-                                   <= *trampoline_size_left_p)
-            return SUBSTITUTE_OK;
-    }
-
-    /* Allocate new trampoline - try after pc.  If this fails, we can try
-     * before pc before giving up. */
-    int ret = execmem_alloc_unsealed(pc, &trampoline_ptr, &trampoline_addr, 
-                                     &trampoline_size_left, opt);
-    if (!ret) {
-        *patch_size_p = jump_patch_size(pc, trampoline_addr, arch, false);
-        if (*patch_size_p != -1) {
-            ret = SUBSTITUTE_OK;
-            goto end;
-        }
-
-        execmem_free(trampoline_ptr, opt);
-    }
-
-    /* Allocate new trampoline - try before pc (xxx only meaningful on arm64) */
-    uintptr_t start_address = pc - 0x80000000;
-    ret = execmem_alloc_unsealed(start_address, &trampoline_ptr, &trampoline_addr, 
-                                 &trampoline_size_left, opt);
-    if (!ret) {
-        *patch_size_p = jump_patch_size(pc, trampoline_addr, arch, false);
-        if (*patch_size_p != -1) {
-            ret = SUBSTITUTE_OK;
-            goto end;
-        }
-
-        execmem_free(trampoline_ptr, opt);
-        ret = SUBSTITUTE_ERR_OUT_OF_RANGE;
-    }
-
-end:
-    *trampoline_ptr_p = trampoline_ptr;
-    *trampoline_addr_p = trampoline_addr;
-    *trampoline_size_left_p = trampoline_size_left;
-    *trampoline_page_p = trampoline_ptr;
-    return ret;
-}
-
 
 EXPORT
 int substitute_hook_functions(const struct substitute_function_hook *hooks,
@@ -157,28 +73,9 @@ int substitute_hook_functions(const struct substitute_function_hook *hooks,
         hi->code = code;
         hi->arch_dis_ctx = arch;
         uintptr_t pc_patch_start = (uintptr_t) code;
-        int patch_size;
-        bool need_intro_trampoline;
-        if ((ret = check_intro_trampoline(&trampoline_ptr, &trampoline_addr, 
-                                          &trampoline_size_left, pc_patch_start,
-                                          (uintptr_t) hook->replacement,
-                                          &patch_size, &need_intro_trampoline,
-                                          &hi->trampoline_page, arch, 
-                                          hook->opt)))
-            goto end;
-
+        int patch_size = jump_patch_size(pc_patch_start, (uintptr_t) hook->replacement, arch, false);
         uint_tptr pc_patch_end = pc_patch_start + patch_size;
-        uintptr_t initial_target;
-        if (need_intro_trampoline) {
-            initial_target = trampoline_addr;
-            trampoline_prev = trampoline_ptr;
-            make_jump_patch(&trampoline_ptr, (uintptr_t) trampoline_ptr,
-                            (uintptr_t) hook->replacement, arch);
-            trampoline_size_left -= patch_size;
-            trampoline_addr += (trampoline_ptr - trampoline_prev);
-        } else {
-            initial_target = (uintptr_t) hook->replacement;
-        }
+        uintptr_t initial_target = (uintptr_t) hook->replacement;
 
         /* Make the real jump patch for the target function. */
         void *jp = hi->jump_patch;
