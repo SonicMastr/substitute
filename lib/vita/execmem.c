@@ -129,7 +129,7 @@ int execmem_foreign_write_with_pc_patch(struct execmem_foreign_write *writes,
         if (pid == KERNEL_PID) {
             sceKernelCpuUnrestrictedMemcpy(writes[i].dst, writes[i].src, writes[i].len);
         } else {
-            sceKernelRxMemcpyKernelToUserForPid(pid, (uintptr_t)writes[i].dst, writes[i].src, writes[i].len);
+            sceKernelCopyToUserProcTextDomain(pid, (uintptr_t)writes[i].dst, writes[i].src, writes[i].len);
         }
         cache_flush(pid, (uintptr_t)writes[i].dst, writes[i].len);
     }
