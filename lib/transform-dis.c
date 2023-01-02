@@ -8,6 +8,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#define printf ksceDebugPrintf
+
 #define P(x) transform_dis_##x
 
 struct transform_dis_ctx {

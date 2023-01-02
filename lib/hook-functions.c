@@ -6,6 +6,7 @@
 #include "execmem.h"
 #include stringify(TARGET_DIR/jump-patch.h)
 #include <stdlib.h>
+#include <alloca.h>
 #ifndef NO_PTHREADS
 #include <pthread.h>
 #endif

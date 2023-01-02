@@ -2,9 +2,9 @@
 #include "dis.h"
 #include "execmem.h"
 #include stringify(TARGET_DIR/jump-patch.h)
-#include <kernel/cpu.h>
-#include <kernel/sysmem.h>
-#include <kernel/threadmgr.h>
+#include <psp2kern/kernel/cpu.h>
+#include <psp2kern/kernel/sysmem.h>
+#include <psp2kern/kernel/threadmgr.h>
 #include "../../../patches.h"
 #include "../../../slab.h"
 #include "../../../taihen_internal.h"
@@ -122,14 +122,14 @@ int execmem_foreign_write_with_pc_patch(struct execmem_foreign_write *writes,
         struct slab_chain *slab = (struct slab_chain *)writes[i].opt;
         SceUID pid = slab->pid;
         if (pid == SHARED_PID) {
-            pid = sceKernelGetProcessId();
-            LOG("sceKernelGetProcessId: %x", pid);
+            pid = ksceKernelGetProcessId();
+            LOG("ksceKernelGetProcessId: %x", pid);
         }
         LOG("PID:%x, dst:%p, src:%p, len:%x", pid, writes[i].dst, writes[i].src, writes[i].len);
         if (pid == KERNEL_PID) {
-            sceKernelCpuUnrestrictedMemcpy(writes[i].dst, writes[i].src, writes[i].len);
+            ksceKernelCpuUnrestrictedMemcpy(writes[i].dst, writes[i].src, writes[i].len);
         } else {
-            sceKernelCopyToUserProcTextDomain(pid, (uintptr_t)writes[i].dst, writes[i].src, writes[i].len);
+            ksceKernelProcMemcpyToUserRx(pid, (uintptr_t)writes[i].dst, writes[i].src, writes[i].len);
         }
         cache_flush(pid, (uintptr_t)writes[i].dst, writes[i].len);
     }

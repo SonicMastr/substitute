@@ -6,12 +6,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#ifdef __GNUC__
-#define alloca(size) __builtin_alloca(size)
-#else
-extern void * alloca (size_t __size);
-#endif
-
 #define INLINE __attribute__((always_inline)) inline
 #define NOINLINE __attribute__((noinline))
 
