@@ -3,7 +3,7 @@
    https://github.com/comex/imaon2
    arguments: '--gen-hook-disassembler -n _arm --dis-pattern=P(XXX) out/out-ARM.json'
    (fair warning: at present the main (Rust) code in that repository is barely
-    started, embarrassingly so; no need to look at it ;p)
+	started, embarrassingly so; no need to look at it ;p)
    In case it's copyrightable in any way, consider the generated code in the
    public domain.
 */
@@ -61,1866 +61,2103 @@
 /* GPR_Rt_addr_offset_none_addr_postidx_reg_Rm_S_1_STRHTr: STRHTr */
 /* GPR_Rt_addrmode_imm12_addr_S_1_STRi12: STRi12 */
 /* GPR_Rt_ldst_so_reg_shift_S_1_STRrs: STRrs */
-    switch ((op >> 20) & 0x1f) {
-    case 0: {
-        switch ((op >> 25) & 0x7) {
-        case 0: {
-            switch ((op >> 5) & 0x1) {
-            case 0: {
-                if ((op & 0xf2000f0) == 0xd0) {
-                    insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST:;
-                    struct bitslice offset = {.nruns = 4, .runs = (struct bitslice_run[]) {{0,0,4}, {8,4,4}, {22,9,1}, {23,8,1}}};
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                    return P(addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST)(ctx, offset, Rt, addr); /* 0x000000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1: {
-                if ((op & 0xf3000b0) == 0xb0) {
-                    insn_GPR_Rt_addr_offset_none_addr_am3offset_offset_S_2_STRD_POST:;
-                    struct bitslice offset = {.nruns = 4, .runs = (struct bitslice_run[]) {{0,0,4}, {8,4,4}, {22,9,1}, {23,8,1}}};
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                    return P(GPR_Rt_addr_offset_none_addr_am3offset_offset_S_2_STRD_POST)(ctx, offset, Rt, addr); /* 0x000000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            if ((op & 0xf3f0000) == 0x20f0000) {
-                insn_adrlabel_label_unk_Rd_1_ADR:;
-                struct bitslice label = {.nruns = 2, .runs = (struct bitslice_run[]) {{0,0,12}, {22,12,2}}};
-                struct bitslice Rd = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                return P(adrlabel_label_unk_Rd_1_ADR)(ctx, label, Rd); /* 0x020f0000 | 0xf0c0ffff */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 2: {
-            insn_GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM:;
-            struct bitslice offset = {.nruns = 2, .runs = (struct bitslice_run[]) {{0,0,12}, {23,12,1}}};
-            struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-            struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-            return P(GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM)(ctx, offset, Rt, addr); /* 0x04000000 | 0xf0efffff */
-        }
-        case 3: {
-            if ((op & 0xf100010) == 0x6000000) {
-                insn_GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG:;
-                struct bitslice offset = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,4}, {5,5,7}, {23,12,1}}};
-                struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                return P(GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG)(ctx, offset, Rt, addr); /* 0x06000000 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 4: {
-            insn_GPR_Rn_reglist_regs_S_16_STMDA:;
-            struct bitslice regs = {.nruns = 1, .runs = (struct bitslice_run[]) {{0,0,16}}};
-            struct bitslice Rn = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-            return P(GPR_Rn_reglist_regs_S_16_STMDA)(ctx, regs, Rn); /* 0x08000000 | 0xf1efffff */
-        }
-        case 5: {
-            insn_br_target_target_pred_p_B_1_Bcc:;
-            struct bitslice target = {.nruns = 1, .runs = (struct bitslice_run[]) {{0,0,24}}};
-            struct bitslice p = {.nruns = 1, .runs = (struct bitslice_run[]) {{28,0,4}}};
-            return P(br_target_target_pred_p_B_1_Bcc)(ctx, target, p); /* 0x0a000000 | 0xf0ffffff */
-        }
-        case 6:
-            return P(unidentified)(ctx);
-        case 7: {
-            if ((op & 0xf100010) == 0xe000010) {
-                insn_GPR_Rt_4_MCR:;
-                struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                return P(GPR_Rt_4_MCR)(ctx, Rt); /* 0x0e000010 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 1: {
-        switch ((op >> 26) & 0x3) {
-        case 0: {
-            switch ((op >> 5) & 0x1) {
-            case 0: {
-                if ((op & 0xf2000f0) == 0xd0) {
-                    goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1: {
-                if ((op & 0xf3000b0) == 0x1000b0) {
-                    goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x001000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 25) & 0x1) {
-            case 0: {
-                insn_addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM:;
-                struct bitslice offset = {.nruns = 2, .runs = (struct bitslice_run[]) {{0,0,12}, {23,12,1}}};
-                struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                return P(addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM)(ctx, offset, Rt, addr); /* 0x04100000 | 0xf0efffff */
-            }
-            case 1: {
-                if ((op & 0xf100010) == 0x6100000) {
-                    insn_addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG:;
-                    struct bitslice offset = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,4}, {5,5,7}, {23,12,1}}};
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                    return P(addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG)(ctx, offset, Rt, addr); /* 0x06100000 | 0xf0efffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 2: {
-            switch ((op >> 25) & 0x1) {
-            case 0: {
-                insn_GPR_Rn_reglist_regs_16_LDMDA:;
-                struct bitslice regs = {.nruns = 1, .runs = (struct bitslice_run[]) {{0,0,16}}};
-                struct bitslice Rn = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                return P(GPR_Rn_reglist_regs_16_LDMDA)(ctx, regs, Rn); /* 0x08100000 | 0xf1efffff */
-            }
-            case 1:
-                goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
-            }
-        }
-        case 3: {
-            if ((op & 0xf100010) == 0xe100010) {
-                insn_unk_Rt_13_MRC:;
-                struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                return P(unk_Rt_13_MRC)(ctx, Rt); /* 0x0e100010 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 2:
-    case 10: {
-        switch ((op >> 25) & 0x7) {
-        case 0: {
-            if ((op & 0xf700ff0) == 0x2000b0) {
-                struct bitslice Rm = {.nruns = 2, .runs = (struct bitslice_run[]) {{0,0,4}, {23,4,1}}};
-                struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                return P(GPR_Rt_addr_offset_none_addr_postidx_reg_Rm_S_1_STRHTr)(ctx, Rm, Rt, addr); /* 0x002000b0 | 0xf08ff00f */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 1:
-            return P(unidentified)(ctx);
-        case 2:
-            goto insn_GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM; /* 0x04000000 | 0xf0efffff */
-        case 3: {
-            if ((op & 0xf100010) == 0x6000000) {
-                goto insn_GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG; /* 0x06000000 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 4:
-            goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
-        case 5:
-            goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
-        case 6: {
-            insn_addr_offset_none_addr_postidx_imm8s4_offset_S_4_STC2L_POST:;
-            struct bitslice offset = {.nruns = 2, .runs = (struct bitslice_run[]) {{0,0,8}, {23,8,1}}};
-            struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-            return P(addr_offset_none_addr_postidx_imm8s4_offset_S_4_STC2L_POST)(ctx, offset, addr); /* 0x0c200000 | 0xf0cfffff */
-        }
-        case 7: {
-            if ((op & 0xf100010) == 0xe000010) {
-                goto insn_GPR_Rt_4_MCR; /* 0x0e000010 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 3:
-    case 11: {
-        switch ((op >> 26) & 0x3) {
-        case 0: {
-            switch ((op >> 5) & 0x1) {
-            case 0: {
-                if ((op & 0xf700ff0) == 0x3000d0) {
-                    insn_addr_offset_none_addr_postidx_reg_Rm_unk_Rt_3_LDRHTr:;
-                    struct bitslice Rm = {.nruns = 2, .runs = (struct bitslice_run[]) {{0,0,4}, {23,4,1}}};
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                    return P(addr_offset_none_addr_postidx_reg_Rm_unk_Rt_3_LDRHTr)(ctx, Rm, Rt, addr); /* 0x003000d0 | 0xf08ff00f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1: {
-                if ((op & 0xf700fb0) == 0x3000b0) {
-                    goto insn_addr_offset_none_addr_postidx_reg_Rm_unk_Rt_3_LDRHTr; /* 0x003000b0 | 0xf08ff04f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM; /* 0x04100000 | 0xf0efffff */
-            case 1: {
-                if ((op & 0xf100010) == 0x6100000) {
-                    goto insn_addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG; /* 0x06100000 | 0xf0efffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 2: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
-            case 1:
-                goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
-            }
-        }
-        case 3: {
-            switch ((op >> 25) & 0x1) {
-            case 0: {
-                insn_addr_offset_none_addr_postidx_imm8s4_offset_4_LDC2L_POST:;
-                struct bitslice offset = {.nruns = 2, .runs = (struct bitslice_run[]) {{0,0,8}, {23,8,1}}};
-                struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                return P(addr_offset_none_addr_postidx_imm8s4_offset_4_LDC2L_POST)(ctx, offset, addr); /* 0x0c300000 | 0xf0cfffff */
-            }
-            case 1: {
-                if ((op & 0xf100010) == 0xe100010) {
-                    goto insn_unk_Rt_13_MRC; /* 0x0e100010 | 0xf0efffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        }
-    }
-    case 4: {
-        switch ((op >> 25) & 0x7) {
-        case 0: {
-            switch ((op >> 5) & 0x1) {
-            case 0: {
-                if ((op & 0xf2000f0) == 0xd0) {
-                    goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1: {
-                if ((op & 0xf3000b0) == 0xb0) {
-                    goto insn_GPR_Rt_addr_offset_none_addr_am3offset_offset_S_2_STRD_POST; /* 0x000000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            if ((op & 0xf3f0000) == 0x20f0000) {
-                goto insn_adrlabel_label_unk_Rd_1_ADR; /* 0x020f0000 | 0xf0c0ffff */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 2:
-            goto insn_GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM; /* 0x04000000 | 0xf0efffff */
-        case 3: {
-            if ((op & 0xf100010) == 0x6000000) {
-                goto insn_GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG; /* 0x06000000 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 4:
-            goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
-        case 5:
-            goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
-        case 6: {
-            if ((op & 0xff00fd0) == 0xc400b10) {
-                goto insn_GPR_Rt_4_MCR; /* 0x0c400b10 | 0xf00ff02f */
-            } else {
-                insn_GPRnopc_Rt_4_MCRR:;
-                struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                return P(GPRnopc_Rt_4_MCRR)(ctx, Rt); /* 0x0c400000 | 0xf00fffff */
-            }
-        }
-        case 7: {
-            if ((op & 0xf100010) == 0xe000010) {
-                goto insn_GPR_Rt_4_MCR; /* 0x0e000010 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 5: {
-        switch ((op >> 25) & 0x7) {
-        case 0: {
-            switch ((op >> 5) & 0x1) {
-            case 0: {
-                if ((op & 0xf2000f0) == 0xd0) {
-                    goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1: {
-                if ((op & 0xf3000b0) == 0x1000b0) {
-                    goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x001000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1:
-            return P(unidentified)(ctx);
-        case 2:
-            goto insn_addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM; /* 0x04100000 | 0xf0efffff */
-        case 3: {
-            if ((op & 0xf100010) == 0x6100000) {
-                goto insn_addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG; /* 0x06100000 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 4:
-            goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
-        case 5:
-            goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
-        case 6: {
-            if ((op & 0xff00ed0) == 0xc500a10) {
-                goto insn_unk_Rt_13_MRC; /* 0x0c500a10 | 0xf00ff12f */
-            } else {
-                goto insn_GPRnopc_Rt_4_MCRR; /* 0x0c500000 | 0xf00fffff */
-            }
-        }
-        case 7: {
-            if ((op & 0xf100010) == 0xe100010) {
-                goto insn_unk_Rt_13_MRC; /* 0x0e100010 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 6:
-    case 14: {
-        switch ((op >> 25) & 0x7) {
-        case 0: {
-            if ((op & 0xf7000f0) == 0x6000b0) {
-                struct bitslice offset = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,4}, {8,4,4}, {23,8,1}}};
-                struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                return P(GPR_Rt_addr_offset_none_addr_postidx_imm8_offset_S_1_STRHTi)(ctx, offset, Rt, addr); /* 0x006000b0 | 0xf08fff0f */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 1:
-            return P(unidentified)(ctx);
-        case 2:
-            goto insn_GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM; /* 0x04000000 | 0xf0efffff */
-        case 3: {
-            if ((op & 0xf100010) == 0x6000000) {
-                goto insn_GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG; /* 0x06000000 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 4:
-            goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
-        case 5:
-            goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
-        case 6:
-            goto insn_addr_offset_none_addr_postidx_imm8s4_offset_S_4_STC2L_POST; /* 0x0c200000 | 0xf0cfffff */
-        case 7: {
-            if ((op & 0xf100010) == 0xe000010) {
-                goto insn_GPR_Rt_4_MCR; /* 0x0e000010 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 7:
-    case 15: {
-        switch ((op >> 26) & 0x3) {
-        case 0: {
-            switch ((op >> 5) & 0x1) {
-            case 0: {
-                if ((op & 0xf7000f0) == 0x7000d0) {
-                    insn_addr_offset_none_addr_postidx_imm8_offset_unk_Rt_3_LDRHTi:;
-                    struct bitslice offset = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,4}, {8,4,4}, {23,8,1}}};
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                    return P(addr_offset_none_addr_postidx_imm8_offset_unk_Rt_3_LDRHTi)(ctx, offset, Rt, addr); /* 0x007000d0 | 0xf08fff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1: {
-                if ((op & 0xf7000b0) == 0x7000b0) {
-                    goto insn_addr_offset_none_addr_postidx_imm8_offset_unk_Rt_3_LDRHTi; /* 0x007000b0 | 0xf08fff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM; /* 0x04100000 | 0xf0efffff */
-            case 1: {
-                if ((op & 0xf100010) == 0x6100000) {
-                    goto insn_addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG; /* 0x06100000 | 0xf0efffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 2: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
-            case 1:
-                goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
-            }
-        }
-        case 3: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_addr_offset_none_addr_postidx_imm8s4_offset_4_LDC2L_POST; /* 0x0c300000 | 0xf0cfffff */
-            case 1: {
-                if ((op & 0xf100010) == 0xe100010) {
-                    goto insn_unk_Rt_13_MRC; /* 0x0e100010 | 0xf0efffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        }
-    }
-    case 8: {
-        switch ((op >> 25) & 0x7) {
-        case 0: {
-            switch ((op >> 4) & 0x3) {
-            case 0: {
-                if ((op & 0xfe00ff0) == 0x800000) {
-                    insn_GPR_Rn_GPR_Rm_unk_Rd_1_ADDrr:;
-                    struct bitslice Rm = {.nruns = 1, .runs = (struct bitslice_run[]) {{0,0,4}}};
-                    struct bitslice Rd = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    struct bitslice Rn = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                    return P(GPR_Rn_GPR_Rm_unk_Rd_1_ADDrr)(ctx, Rm, Rd, Rn); /* 0x00800000 | 0xf01ff00f */
-                } else {
-                    insn_GPR_Rn_so_reg_imm_shift_unk_Rd_1_ADDrsi:;
-                    struct bitslice shift = {.nruns = 2, .runs = (struct bitslice_run[]) {{0,0,4}, {5,5,7}}};
-                    struct bitslice Rd = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    struct bitslice Rn = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                    return P(GPR_Rn_so_reg_imm_shift_unk_Rd_1_ADDrsi)(ctx, shift, Rd, Rn); /* 0x00800000 | 0xf01fffcf */
-                }
-            }
-            case 1: {
-                switch ((op >> 7) & 0x1) {
-                case 0: {
-                    insn_GPR_Rn_so_reg_reg_shift_unk_Rd_1_ADDrsr:;
-                    struct bitslice shift = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,4}, {5,5,2}, {8,8,4}}};
-                    struct bitslice Rd = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    struct bitslice Rn = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                    return P(GPR_Rn_so_reg_reg_shift_unk_Rd_1_ADDrsr)(ctx, shift, Rd, Rn); /* 0x00800010 | 0xf01fff6f */
-                }
-                case 1: {
-                    if ((op & 0xf2000f0) == 0xd0) {
-                        goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
-                    } else {
-                        return P(unidentified)(ctx);
-                    }
-                }
-                }
-            }
-            case 2:
-                goto insn_GPR_Rn_so_reg_imm_shift_unk_Rd_1_ADDrsi; /* 0x00800000 | 0xf01fffef */
-            case 3: {
-                switch ((op >> 7) & 0x1) {
-                case 0:
-                    goto insn_GPR_Rn_so_reg_reg_shift_unk_Rd_1_ADDrsr; /* 0x00800010 | 0xf01fff6f */
-                case 1:
-                    goto insn_GPR_Rt_addr_offset_none_addr_am3offset_offset_S_2_STRD_POST; /* 0x000000b0 | 0xf0cfff4f */
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 16) & 0xf) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            case 14: {
-                insn_GPR_Rn_unk_Rd_1_ADDri:;
-                struct bitslice Rd = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                struct bitslice Rn = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                return P(GPR_Rn_unk_Rd_1_ADDri)(ctx, Rd, Rn); /* 0x02800000 | 0xf01fffff */
-            }
-            case 15:
-                goto insn_adrlabel_label_unk_Rd_1_ADR; /* 0x020f0000 | 0xf0c0ffff */
-            }
-        }
-        case 2:
-            goto insn_GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM; /* 0x04000000 | 0xf0efffff */
-        case 3: {
-            if ((op & 0xf100010) == 0x6000000) {
-                goto insn_GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG; /* 0x06000000 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 4:
-            goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
-        case 5:
-            goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
-        case 6: {
-            insn_addr_offset_none_addr_S_4_STC2L_OPTION:;
-            struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-            return P(addr_offset_none_addr_S_4_STC2L_OPTION)(ctx, addr); /* 0x0c800000 | 0xf04fffff */
-        }
-        case 7: {
-            if ((op & 0xf100010) == 0xe000010) {
-                goto insn_GPR_Rt_4_MCR; /* 0x0e000010 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 9: {
-        switch ((op >> 25) & 0x7) {
-        case 0: {
-            switch ((op >> 4) & 0x3) {
-            case 0: {
-                if ((op & 0xfe00ff0) == 0x800000) {
-                    goto insn_GPR_Rn_GPR_Rm_unk_Rd_1_ADDrr; /* 0x00800000 | 0xf01ff00f */
-                } else {
-                    goto insn_GPR_Rn_so_reg_imm_shift_unk_Rd_1_ADDrsi; /* 0x00800000 | 0xf01fffcf */
-                }
-            }
-            case 1: {
-                switch ((op >> 7) & 0x1) {
-                case 0:
-                    goto insn_GPR_Rn_so_reg_reg_shift_unk_Rd_1_ADDrsr; /* 0x00800010 | 0xf01fff6f */
-                case 1: {
-                    if ((op & 0xf2000f0) == 0xd0) {
-                        goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
-                    } else {
-                        return P(unidentified)(ctx);
-                    }
-                }
-                }
-            }
-            case 2:
-                goto insn_GPR_Rn_so_reg_imm_shift_unk_Rd_1_ADDrsi; /* 0x00800000 | 0xf01fffef */
-            case 3: {
-                switch ((op >> 7) & 0x1) {
-                case 0:
-                    goto insn_GPR_Rn_so_reg_reg_shift_unk_Rd_1_ADDrsr; /* 0x00800010 | 0xf01fff6f */
-                case 1:
-                    goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x001000b0 | 0xf0cfff4f */
-                }
-            }
-            }
-        }
-        case 1:
-            goto insn_GPR_Rn_unk_Rd_1_ADDri; /* 0x02800000 | 0xf01fffff */
-        case 2:
-            goto insn_addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM; /* 0x04100000 | 0xf0efffff */
-        case 3: {
-            if ((op & 0xf100010) == 0x6100000) {
-                goto insn_addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG; /* 0x06100000 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 4:
-            goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
-        case 5:
-            goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
-        case 6: {
-            insn_addr_offset_none_addr_4_LDC2L_OPTION:;
-            struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-            return P(addr_offset_none_addr_4_LDC2L_OPTION)(ctx, addr); /* 0x0c900000 | 0xf04fffff */
-        }
-        case 7: {
-            if ((op & 0xf100010) == 0xe100010) {
-                goto insn_unk_Rt_13_MRC; /* 0x0e100010 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 12: {
-        switch ((op >> 25) & 0x7) {
-        case 0: {
-            switch ((op >> 5) & 0x1) {
-            case 0: {
-                if ((op & 0xf2000f0) == 0xd0) {
-                    goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1: {
-                if ((op & 0xf3000b0) == 0xb0) {
-                    goto insn_GPR_Rt_addr_offset_none_addr_am3offset_offset_S_2_STRD_POST; /* 0x000000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            if ((op & 0xf3f0000) == 0x20f0000) {
-                goto insn_adrlabel_label_unk_Rd_1_ADR; /* 0x020f0000 | 0xf0c0ffff */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 2:
-            goto insn_GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM; /* 0x04000000 | 0xf0efffff */
-        case 3: {
-            if ((op & 0xf100010) == 0x6000000) {
-                goto insn_GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG; /* 0x06000000 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 4:
-            goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
-        case 5:
-            goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
-        case 6:
-            goto insn_addr_offset_none_addr_S_4_STC2L_OPTION; /* 0x0c800000 | 0xf04fffff */
-        case 7: {
-            if ((op & 0xf100010) == 0xe000010) {
-                goto insn_GPR_Rt_4_MCR; /* 0x0e000010 | 0xf0efffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 13: {
-        switch ((op >> 26) & 0x3) {
-        case 0: {
-            switch ((op >> 5) & 0x1) {
-            case 0: {
-                if ((op & 0xf2000f0) == 0xd0) {
-                    goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1: {
-                if ((op & 0xf3000b0) == 0x1000b0) {
-                    goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x001000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM; /* 0x04100000 | 0xf0efffff */
-            case 1: {
-                if ((op & 0xf100010) == 0x6100000) {
-                    goto insn_addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG; /* 0x06100000 | 0xf0efffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 2: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
-            case 1:
-                goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
-            }
-        }
-        case 3: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_addr_offset_none_addr_4_LDC2L_OPTION; /* 0x0c900000 | 0xf04fffff */
-            case 1: {
-                if ((op & 0xf100010) == 0xe100010) {
-                    goto insn_unk_Rt_13_MRC; /* 0x0e100010 | 0xf0efffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        }
-    }
-    case 16: {
-        switch ((op >> 25) & 0x7) {
-        case 0: {
-            switch ((op >> 5) & 0x3) {
-            case 0: {
-                if ((op & 0xfb00ff0) == 0x1000090) {
-                    insn_addr_offset_none_addr_unk_Rt_13_LDA:;
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                    return P(addr_offset_none_addr_unk_Rt_13_LDA)(ctx, Rt, addr); /* 0x01000090 | 0xf04ff00f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1:
-            case 3: {
-                if ((op & 0xf3000b0) == 0x10000b0) {
-                    insn_GPR_Rt_addrmode3_addr_S_2_STRD:;
-                    struct bitslice addr = {.nruns = 5, .runs = (struct bitslice_run[]) {{0,0,4}, {8,4,4}, {16,9,4}, {22,13,1}, {23,8,1}}};
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    return P(GPR_Rt_addrmode3_addr_S_2_STRD)(ctx, addr, Rt); /* 0x010000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 2: {
-                if ((op & 0xf2000f0) == 0x10000d0) {
-                    insn_addrmode3_addr_unk_Rt_4_LDRD:;
-                    struct bitslice addr = {.nruns = 5, .runs = (struct bitslice_run[]) {{0,0,4}, {8,4,4}, {16,9,4}, {22,13,1}, {23,8,1}}};
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    return P(addrmode3_addr_unk_Rt_4_LDRD)(ctx, addr, Rt); /* 0x010000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            insn_unk_Rd_5_MOVTi16:;
-            struct bitslice Rd = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-            return P(unk_Rd_5_MOVTi16)(ctx, Rd); /* 0x03000000 | 0xf04fffff */
-        }
-        case 2: {
-            insn_GPR_Rt_addrmode_imm12_addr_S_1_STRi12:;
-            struct bitslice addr = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,12}, {16,13,4}, {23,12,1}}};
-            struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-            return P(GPR_Rt_addrmode_imm12_addr_S_1_STRi12)(ctx, addr, Rt); /* 0x05000000 | 0xf08fffff */
-        }
-        case 3: {
-            if ((op & 0xf700010) == 0x7000000) {
-                insn_GPR_Rt_ldst_so_reg_shift_S_1_STRrs:;
-                struct bitslice shift = {.nruns = 4, .runs = (struct bitslice_run[]) {{0,0,4}, {5,5,7}, {16,13,4}, {23,12,1}}};
-                struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                return P(GPR_Rt_ldst_so_reg_shift_S_1_STRrs)(ctx, shift, Rt); /* 0x07000000 | 0xf08fffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 4:
-            goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
-        case 5: {
-            insn_bl_target_func_2_BL:;
-            struct bitslice func = {.nruns = 1, .runs = (struct bitslice_run[]) {{0,0,24}}};
-            return P(bl_target_func_2_BL)(ctx, func); /* 0x0b000000 | 0xf0ffffff */
-        }
-        case 6: {
-            switch ((op >> 9) & 0x7) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 6:
-            case 7: {
-                insn_addrmode5_addr_S_4_STC2L_OFFSET:;
-                struct bitslice addr = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,8}, {16,9,4}, {23,8,1}}};
-                return P(addrmode5_addr_S_4_STC2L_OFFSET)(ctx, addr); /* 0x0d000000 | 0xf0cfffff */
-            }
-            case 5: {
-                insn_addrmode5_addr_8_LDC2L_OFFSET:;
-                struct bitslice addr = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,8}, {16,9,4}, {23,8,1}}};
-                return P(addrmode5_addr_8_LDC2L_OFFSET)(ctx, addr); /* 0x0d000a00 | 0xf0cff1ff */
-            }
-            }
-        }
-        case 7:
-            return P(unidentified)(ctx);
-        }
-    }
-    case 17:
-    case 21: {
-        switch ((op >> 26) & 0x3) {
-        case 0: {
-            switch ((op >> 5) & 0x1) {
-            case 0: {
-                if ((op & 0xf2000f0) == 0x10000d0) {
-                    goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x010000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1: {
-                if ((op & 0xf3000b0) == 0x11000b0) {
-                    goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x011000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 25) & 0x1) {
-            case 0: {
-                insn_addrmode_imm12_addr_unk_Rt_2_LDRBi12:;
-                struct bitslice addr = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,12}, {16,13,4}, {23,12,1}}};
-                struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                return P(addrmode_imm12_addr_unk_Rt_2_LDRBi12)(ctx, addr, Rt); /* 0x05100000 | 0xf0cfffff */
-            }
-            case 1: {
-                if ((op & 0xf300010) == 0x7100000) {
-                    insn_ldst_so_reg_shift_unk_Rt_2_LDRBrs:;
-                    struct bitslice shift = {.nruns = 4, .runs = (struct bitslice_run[]) {{0,0,4}, {5,5,7}, {16,13,4}, {23,12,1}}};
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    return P(ldst_so_reg_shift_unk_Rt_2_LDRBrs)(ctx, shift, Rt); /* 0x07100000 | 0xf0cfffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 2: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
-            case 1:
-                goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
-            }
-        }
-        case 3: {
-            if ((op & 0xf300000) == 0xd100000) {
-                goto insn_addrmode5_addr_8_LDC2L_OFFSET; /* 0x0d100000 | 0xf0cfffff */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 18: {
-        switch ((op >> 26) & 0x3) {
-        case 0: {
-            switch ((op >> 5) & 0x7) {
-            case 0: {
-                if ((op & 0xffffff0) == 0x12fff10) {
-                    struct bitslice dst = {.nruns = 1, .runs = (struct bitslice_run[]) {{0,0,4}}};
-                    return P(GPR_dst_B_2_BX)(ctx, dst); /* 0x012fff10 | 0xf000000f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1: {
-                if ((op & 0xfffffe0) == 0x12fff20) {
-                    struct bitslice func = {.nruns = 1, .runs = (struct bitslice_run[]) {{0,0,4}}};
-                    return P(GPR_func_3_BLX)(ctx, func); /* 0x012fff20 | 0xf000001f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 2:
-            case 3:
-            case 4:
-                return P(unidentified)(ctx);
-            case 5:
-            case 7: {
-                if ((op & 0xf3000b0) == 0x12000b0) {
-                    insn_GPR_Rt_addrmode3_pre_addr_S_2_STRD_PRE:;
-                    struct bitslice addr = {.nruns = 5, .runs = (struct bitslice_run[]) {{0,0,4}, {8,4,4}, {16,9,4}, {22,13,1}, {23,8,1}}};
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    return P(GPR_Rt_addrmode3_pre_addr_S_2_STRD_PRE)(ctx, addr, Rt); /* 0x012000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 6: {
-                if ((op & 0xf2000f0) == 0x12000d0) {
-                    insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE:;
-                    struct bitslice addr = {.nruns = 5, .runs = (struct bitslice_run[]) {{0,0,4}, {8,4,4}, {16,9,4}, {22,13,1}, {23,8,1}}};
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    return P(addrmode3_pre_addr_unk_Rt_4_LDRD_PRE)(ctx, addr, Rt); /* 0x012000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 25) & 0x1) {
-            case 0: {
-                insn_GPR_Rt_addrmode_imm12_pre_addr_S_2_STRB_PRE_IMM:;
-                struct bitslice addr = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,12}, {16,13,4}, {23,12,1}}};
-                struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                return P(GPR_Rt_addrmode_imm12_pre_addr_S_2_STRB_PRE_IMM)(ctx, addr, Rt); /* 0x05200000 | 0xf0cfffff */
-            }
-            case 1: {
-                if ((op & 0xf300010) == 0x7200000) {
-                    insn_GPR_Rt_ldst_so_reg_addr_S_2_STRB_PRE_REG:;
-                    struct bitslice addr = {.nruns = 4, .runs = (struct bitslice_run[]) {{0,0,4}, {5,5,7}, {16,13,4}, {23,12,1}}};
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    return P(GPR_Rt_ldst_so_reg_addr_S_2_STRB_PRE_REG)(ctx, addr, Rt); /* 0x07200000 | 0xf0cfffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 2: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
-            case 1:
-                goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
-            }
-        }
-        case 3: {
-            if ((op & 0xf300000) == 0xd200000) {
-                insn_addrmode5_pre_addr_S_4_STC2L_PRE:;
-                struct bitslice addr = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,8}, {16,9,4}, {23,8,1}}};
-                return P(addrmode5_pre_addr_S_4_STC2L_PRE)(ctx, addr); /* 0x0d200000 | 0xf0cfffff */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 19:
-    case 23: {
-        switch ((op >> 26) & 0x3) {
-        case 0: {
-            switch ((op >> 5) & 0x1) {
-            case 0: {
-                if ((op & 0xf2000f0) == 0x12000d0) {
-                    goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x012000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1: {
-                if ((op & 0xf3000b0) == 0x13000b0) {
-                    goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x013000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 25) & 0x1) {
-            case 0: {
-                insn_addrmode_imm12_pre_addr_unk_Rt_2_LDRB_PRE_IMM:;
-                struct bitslice addr = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,12}, {16,13,4}, {23,12,1}}};
-                struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                return P(addrmode_imm12_pre_addr_unk_Rt_2_LDRB_PRE_IMM)(ctx, addr, Rt); /* 0x05300000 | 0xf0cfffff */
-            }
-            case 1: {
-                if ((op & 0xf300010) == 0x7300000) {
-                    insn_ldst_so_reg_addr_unk_Rt_2_LDRB_PRE_REG:;
-                    struct bitslice addr = {.nruns = 4, .runs = (struct bitslice_run[]) {{0,0,4}, {5,5,7}, {16,13,4}, {23,12,1}}};
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    return P(ldst_so_reg_addr_unk_Rt_2_LDRB_PRE_REG)(ctx, addr, Rt); /* 0x07300000 | 0xf0cfffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 2: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
-            case 1:
-                goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
-            }
-        }
-        case 3: {
-            if ((op & 0xf300000) == 0xd300000) {
-                insn_addrmode5_pre_addr_4_LDC2L_PRE:;
-                struct bitslice addr = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,8}, {16,9,4}, {23,8,1}}};
-                return P(addrmode5_pre_addr_4_LDC2L_PRE)(ctx, addr); /* 0x0d300000 | 0xf0cfffff */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 20: {
-        switch ((op >> 25) & 0x7) {
-        case 0: {
-            switch ((op >> 5) & 0x3) {
-            case 0: {
-                if ((op & 0xfb00ff0) == 0x1000090) {
-                    goto insn_addr_offset_none_addr_unk_Rt_13_LDA; /* 0x01000090 | 0xf04ff00f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1:
-            case 3: {
-                if ((op & 0xf3000b0) == 0x10000b0) {
-                    goto insn_GPR_Rt_addrmode3_addr_S_2_STRD; /* 0x010000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 2: {
-                if ((op & 0xf2000f0) == 0x10000d0) {
-                    goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x010000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1:
-            goto insn_unk_Rd_5_MOVTi16; /* 0x03000000 | 0xf04fffff */
-        case 2: {
-            insn_GPRnopc_Rt_addrmode_imm12_addr_S_1_STRBi12:;
-            struct bitslice addr = {.nruns = 3, .runs = (struct bitslice_run[]) {{0,0,12}, {16,13,4}, {23,12,1}}};
-            struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-            return P(GPRnopc_Rt_addrmode_imm12_addr_S_1_STRBi12)(ctx, addr, Rt); /* 0x05400000 | 0xf08fffff */
-        }
-        case 3: {
-            if ((op & 0xf700010) == 0x7400000) {
-                insn_GPRnopc_Rt_ldst_so_reg_shift_S_1_STRBrs:;
-                struct bitslice shift = {.nruns = 4, .runs = (struct bitslice_run[]) {{0,0,4}, {5,5,7}, {16,13,4}, {23,12,1}}};
-                struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                return P(GPRnopc_Rt_ldst_so_reg_shift_S_1_STRBrs)(ctx, shift, Rt); /* 0x07400000 | 0xf08fffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 4:
-            goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
-        case 5:
-            goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
-        case 6: {
-            switch ((op >> 9) & 0x7) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 6:
-            case 7:
-                goto insn_addrmode5_addr_S_4_STC2L_OFFSET; /* 0x0d000000 | 0xf0cfffff */
-            case 5:
-                goto insn_addrmode5_addr_8_LDC2L_OFFSET; /* 0x0d000a00 | 0xf0cff1ff */
-            }
-        }
-        case 7:
-            return P(unidentified)(ctx);
-        }
-    }
-    case 22: {
-        switch ((op >> 26) & 0x3) {
-        case 0: {
-            switch ((op >> 5) & 0x1) {
-            case 0: {
-                if ((op & 0xf2000f0) == 0x12000d0) {
-                    goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x012000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 1: {
-                if ((op & 0xf3000b0) == 0x12000b0) {
-                    goto insn_GPR_Rt_addrmode3_pre_addr_S_2_STRD_PRE; /* 0x012000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rt_addrmode_imm12_pre_addr_S_2_STRB_PRE_IMM; /* 0x05200000 | 0xf0cfffff */
-            case 1: {
-                if ((op & 0xf300010) == 0x7200000) {
-                    goto insn_GPR_Rt_ldst_so_reg_addr_S_2_STRB_PRE_REG; /* 0x07200000 | 0xf0cfffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 2: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
-            case 1:
-                goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
-            }
-        }
-        case 3: {
-            if ((op & 0xf300000) == 0xd200000) {
-                goto insn_addrmode5_pre_addr_S_4_STC2L_PRE; /* 0x0d200000 | 0xf0cfffff */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 24: {
-        switch ((op >> 26) & 0x3) {
-        case 0: {
-            switch ((op >> 5) & 0x1f) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-            case 24:
-            case 25:
-            case 26:
-            case 27:
-                return P(unidentified)(ctx);
-            case 4: {
-                if ((op & 0xfb0fff0) == 0x180fc90) {
-                    insn_GPR_Rt_addr_offset_none_addr_S_3_STL:;
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{0,0,4}}};
-                    struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                    return P(GPR_Rt_addr_offset_none_addr_S_3_STL)(ctx, Rt, addr); /* 0x0180fc90 | 0xf04f000f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 5:
-            case 7:
-            case 13:
-            case 15:
-            case 21:
-            case 23:
-            case 29:
-            case 31: {
-                if ((op & 0xf3000b0) == 0x10000b0) {
-                    goto insn_GPR_Rt_addrmode3_addr_S_2_STRD; /* 0x010000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 6:
-            case 14:
-            case 22:
-            case 30: {
-                if ((op & 0xf2000f0) == 0x10000d0) {
-                    goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x010000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 20:
-            case 28: {
-                if ((op & 0xfb00ef0) == 0x1800e90) {
-                    insn_GPR_Rt_addr_offset_none_addr_unk_Rd_S_6_STLEX:;
-                    struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{0,0,4}}};
-                    struct bitslice Rd = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                    struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                    return P(GPR_Rt_addr_offset_none_addr_unk_Rd_S_6_STLEX)(ctx, Rt, Rd, addr); /* 0x01800e90 | 0xf04ff10f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rt_addrmode_imm12_addr_S_1_STRi12; /* 0x05000000 | 0xf08fffff */
-            case 1: {
-                if ((op & 0xf700010) == 0x7000000) {
-                    goto insn_GPR_Rt_ldst_so_reg_shift_S_1_STRrs; /* 0x07000000 | 0xf08fffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 2: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
-            case 1:
-                goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
-            }
-        }
-        case 3: {
-            switch ((op >> 9) & 0x7) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 6:
-            case 7: {
-                if ((op & 0xf300000) == 0xd000000) {
-                    goto insn_addrmode5_addr_S_4_STC2L_OFFSET; /* 0x0d000000 | 0xf0cfffff */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 5: {
-                if ((op & 0xf300e00) == 0xd000a00) {
-                    goto insn_addrmode5_addr_8_LDC2L_OFFSET; /* 0x0d000a00 | 0xf0cff1ff */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        }
-    }
-    case 25:
-    case 29: {
-        switch ((op >> 26) & 0x3) {
-        case 0: {
-            switch ((op >> 5) & 0xf) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-                return P(unidentified)(ctx);
-            case 4: {
-                if ((op & 0xfb00dff) == 0x1900c9f) {
-                    goto insn_addr_offset_none_addr_unk_Rt_13_LDA; /* 0x01900c9f | 0xf04ff200 */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 5:
-            case 7:
-            case 13:
-            case 15: {
-                if ((op & 0xf3000b0) == 0x11000b0) {
-                    goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x011000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 6:
-            case 14: {
-                if ((op & 0xf2000f0) == 0x10000d0) {
-                    goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x010000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 12: {
-                if ((op & 0xfb00fff) == 0x1900f9f) {
-                    goto insn_addr_offset_none_addr_unk_Rt_13_LDA; /* 0x01900f9f | 0xf04ff000 */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_addrmode_imm12_addr_unk_Rt_2_LDRBi12; /* 0x05100000 | 0xf0cfffff */
-            case 1: {
-                if ((op & 0xf300010) == 0x7100000) {
-                    goto insn_ldst_so_reg_shift_unk_Rt_2_LDRBrs; /* 0x07100000 | 0xf0cfffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 2: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
-            case 1:
-                goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
-            }
-        }
-        case 3: {
-            if ((op & 0xf300000) == 0xd100000) {
-                goto insn_addrmode5_addr_8_LDC2L_OFFSET; /* 0x0d100000 | 0xf0cfffff */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 26: {
-        switch ((op >> 25) & 0x7) {
-        case 0: {
-            switch ((op >> 4) & 0x3) {
-            case 0: {
-                switch ((op >> 16) & 0xf) {
-                case 0: {
-                    if ((op & 0xfef0ff0) == 0x1a00000) {
-                        insn_GPR_Rm_unk_Rd_1_MOVr:;
-                        struct bitslice Rm = {.nruns = 1, .runs = (struct bitslice_run[]) {{0,0,4}}};
-                        struct bitslice Rd = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                        return P(GPR_Rm_unk_Rd_1_MOVr)(ctx, Rm, Rd); /* 0x01a00000 | 0xf010f00f */
-                    } else {
-                        goto insn_unk_Rd_5_MOVTi16; /* 0x01a00000 | 0xf010ffcf */
-                    }
-                }
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                case 10:
-                case 11:
-                case 12:
-                case 13:
-                case 14:
-                case 15: {
-                    if ((op & 0xfe00ff0) == 0x1a00000) {
-                        insn_tcGPR_Rm_unk_Rd_1_MOVr_TC:;
-                        struct bitslice Rm = {.nruns = 1, .runs = (struct bitslice_run[]) {{0,0,4}}};
-                        struct bitslice Rd = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                        return P(tcGPR_Rm_unk_Rd_1_MOVr_TC)(ctx, Rm, Rd); /* 0x01a00000 | 0xf01ff00f */
-                    } else {
-                        return P(unidentified)(ctx);
-                    }
-                }
-                }
-            }
-            case 1: {
-                switch ((op >> 6) & 0x3) {
-                case 0:
-                case 1: {
-                    if ((op & 0xfef0090) == 0x1a00010) {
-                        goto insn_unk_Rd_5_MOVTi16; /* 0x01a00010 | 0xf010ff6f */
-                    } else {
-                        return P(unidentified)(ctx);
-                    }
-                }
-                case 2: {
-                    if ((op & 0xff00ef0) == 0x1a00e90) {
-                        struct bitslice Rt = {.nruns = 1, .runs = (struct bitslice_run[]) {{0,0,4}}};
-                        struct bitslice Rd = {.nruns = 1, .runs = (struct bitslice_run[]) {{12,0,4}}};
-                        struct bitslice addr = {.nruns = 1, .runs = (struct bitslice_run[]) {{16,0,4}}};
-                        return P(GPRPairOp_Rt_addr_offset_none_addr_unk_Rd_S_2_STLEXD)(ctx, Rt, Rd, addr); /* 0x01a00e90 | 0xf00ff10f */
-                    } else {
-                        return P(unidentified)(ctx);
-                    }
-                }
-                case 3:
-                    goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x012000d0 | 0xf0dfff0f */
-                }
-            }
-            case 2: {
-                if ((op & 0xfef0010) == 0x1a00000) {
-                    goto insn_unk_Rd_5_MOVTi16; /* 0x01a00000 | 0xf010ffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 3: {
-                switch ((op >> 7) & 0x1) {
-                case 0: {
-                    if ((op & 0xfef0090) == 0x1a00010) {
-                        goto insn_unk_Rd_5_MOVTi16; /* 0x01a00010 | 0xf010ff6f */
-                    } else {
-                        return P(unidentified)(ctx);
-                    }
-                }
-                case 1:
-                    goto insn_GPR_Rt_addrmode3_pre_addr_S_2_STRD_PRE; /* 0x012000b0 | 0xf0cfff4f */
-                }
-            }
-            }
-        }
-        case 1: {
-            if ((op & 0xfef0000) == 0x3a00000) {
-                goto insn_unk_Rd_5_MOVTi16; /* 0x03a00000 | 0xf010ffff */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 2:
-            goto insn_GPR_Rt_addrmode_imm12_pre_addr_S_2_STRB_PRE_IMM; /* 0x05200000 | 0xf0cfffff */
-        case 3: {
-            if ((op & 0xf300010) == 0x7200000) {
-                goto insn_GPR_Rt_ldst_so_reg_addr_S_2_STRB_PRE_REG; /* 0x07200000 | 0xf0cfffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 4:
-            goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
-        case 5:
-            goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
-        case 6:
-            goto insn_addrmode5_pre_addr_S_4_STC2L_PRE; /* 0x0d200000 | 0xf0cfffff */
-        case 7:
-            return P(unidentified)(ctx);
-        }
-    }
-    case 27: {
-        switch ((op >> 25) & 0x7) {
-        case 0: {
-            switch ((op >> 4) & 0x3) {
-            case 0: {
-                switch ((op >> 16) & 0xf) {
-                case 0: {
-                    if ((op & 0xfef0ff0) == 0x1a00000) {
-                        goto insn_GPR_Rm_unk_Rd_1_MOVr; /* 0x01a00000 | 0xf010f00f */
-                    } else {
-                        goto insn_unk_Rd_5_MOVTi16; /* 0x01a00000 | 0xf010ffcf */
-                    }
-                }
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                case 10:
-                case 11:
-                case 12:
-                case 13:
-                case 14:
-                case 15: {
-                    if ((op & 0xfe00ff0) == 0x1a00000) {
-                        goto insn_tcGPR_Rm_unk_Rd_1_MOVr_TC; /* 0x01a00000 | 0xf01ff00f */
-                    } else {
-                        return P(unidentified)(ctx);
-                    }
-                }
-                }
-            }
-            case 1: {
-                switch ((op >> 6) & 0x3) {
-                case 0:
-                case 1: {
-                    if ((op & 0xfef0090) == 0x1a00010) {
-                        goto insn_unk_Rd_5_MOVTi16; /* 0x01a00010 | 0xf010ff6f */
-                    } else {
-                        return P(unidentified)(ctx);
-                    }
-                }
-                case 2: {
-                    if ((op & 0xfb00eff) == 0x1b00e9f) {
-                        goto insn_addr_offset_none_addr_unk_Rt_13_LDA; /* 0x01b00e9f | 0xf04ff100 */
-                    } else {
-                        return P(unidentified)(ctx);
-                    }
-                }
-                case 3:
-                    goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x012000d0 | 0xf0dfff0f */
-                }
-            }
-            case 2: {
-                if ((op & 0xfef0010) == 0x1a00000) {
-                    goto insn_unk_Rd_5_MOVTi16; /* 0x01a00000 | 0xf010ffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 3: {
-                switch ((op >> 7) & 0x1) {
-                case 0: {
-                    if ((op & 0xfef0090) == 0x1a00010) {
-                        goto insn_unk_Rd_5_MOVTi16; /* 0x01a00010 | 0xf010ff6f */
-                    } else {
-                        return P(unidentified)(ctx);
-                    }
-                }
-                case 1:
-                    goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x013000b0 | 0xf0cfff4f */
-                }
-            }
-            }
-        }
-        case 1: {
-            if ((op & 0xfef0000) == 0x3a00000) {
-                goto insn_unk_Rd_5_MOVTi16; /* 0x03a00000 | 0xf010ffff */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 2:
-            goto insn_addrmode_imm12_pre_addr_unk_Rt_2_LDRB_PRE_IMM; /* 0x05300000 | 0xf0cfffff */
-        case 3: {
-            if ((op & 0xf300010) == 0x7300000) {
-                goto insn_ldst_so_reg_addr_unk_Rt_2_LDRB_PRE_REG; /* 0x07300000 | 0xf0cfffef */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        case 4:
-            goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
-        case 5:
-            goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
-        case 6:
-            goto insn_addrmode5_pre_addr_4_LDC2L_PRE; /* 0x0d300000 | 0xf0cfffff */
-        case 7:
-            return P(unidentified)(ctx);
-        }
-    }
-    case 28: {
-        switch ((op >> 26) & 0x3) {
-        case 0: {
-            switch ((op >> 5) & 0x1f) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-            case 24:
-            case 25:
-            case 26:
-            case 27:
-                return P(unidentified)(ctx);
-            case 4: {
-                if ((op & 0xfb0fff0) == 0x180fc90) {
-                    goto insn_GPR_Rt_addr_offset_none_addr_S_3_STL; /* 0x0180fc90 | 0xf04f000f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 5:
-            case 7:
-            case 13:
-            case 15:
-            case 21:
-            case 23:
-            case 29:
-            case 31: {
-                if ((op & 0xf3000b0) == 0x10000b0) {
-                    goto insn_GPR_Rt_addrmode3_addr_S_2_STRD; /* 0x010000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 6:
-            case 14:
-            case 22:
-            case 30: {
-                if ((op & 0xf2000f0) == 0x10000d0) {
-                    goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x010000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 20:
-            case 28: {
-                if ((op & 0xfb00ef0) == 0x1800e90) {
-                    goto insn_GPR_Rt_addr_offset_none_addr_unk_Rd_S_6_STLEX; /* 0x01800e90 | 0xf04ff10f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPRnopc_Rt_addrmode_imm12_addr_S_1_STRBi12; /* 0x05400000 | 0xf08fffff */
-            case 1: {
-                if ((op & 0xf700010) == 0x7400000) {
-                    goto insn_GPRnopc_Rt_ldst_so_reg_shift_S_1_STRBrs; /* 0x07400000 | 0xf08fffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 2: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
-            case 1:
-                goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
-            }
-        }
-        case 3: {
-            switch ((op >> 9) & 0x7) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 6:
-            case 7: {
-                if ((op & 0xf300000) == 0xd000000) {
-                    goto insn_addrmode5_addr_S_4_STC2L_OFFSET; /* 0x0d000000 | 0xf0cfffff */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 5: {
-                if ((op & 0xf300e00) == 0xd000a00) {
-                    goto insn_addrmode5_addr_8_LDC2L_OFFSET; /* 0x0d000a00 | 0xf0cff1ff */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        }
-    }
-    case 30: {
-        switch ((op >> 26) & 0x3) {
-        case 0: {
-            switch ((op >> 5) & 0x1f) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-            case 24:
-            case 25:
-            case 26:
-            case 27:
-                return P(unidentified)(ctx);
-            case 4: {
-                if ((op & 0xff0fff0) == 0x1e0fc90) {
-                    goto insn_GPR_Rt_addr_offset_none_addr_S_3_STL; /* 0x01e0fc90 | 0xf00f000f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 5:
-            case 7:
-            case 13:
-            case 15:
-            case 21:
-            case 23:
-            case 29:
-            case 31: {
-                if ((op & 0xf3000b0) == 0x12000b0) {
-                    goto insn_GPR_Rt_addrmode3_pre_addr_S_2_STRD_PRE; /* 0x012000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 6:
-            case 14:
-            case 22:
-            case 30: {
-                if ((op & 0xf2000f0) == 0x12000d0) {
-                    goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x012000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 20:
-            case 28: {
-                if ((op & 0xff00ef0) == 0x1e00e90) {
-                    goto insn_GPR_Rt_addr_offset_none_addr_unk_Rd_S_6_STLEX; /* 0x01e00e90 | 0xf00ff10f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rt_addrmode_imm12_pre_addr_S_2_STRB_PRE_IMM; /* 0x05200000 | 0xf0cfffff */
-            case 1: {
-                if ((op & 0xf300010) == 0x7200000) {
-                    goto insn_GPR_Rt_ldst_so_reg_addr_S_2_STRB_PRE_REG; /* 0x07200000 | 0xf0cfffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 2: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
-            case 1:
-                goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
-            }
-        }
-        case 3: {
-            if ((op & 0xf300000) == 0xd200000) {
-                goto insn_addrmode5_pre_addr_S_4_STC2L_PRE; /* 0x0d200000 | 0xf0cfffff */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    case 31: {
-        switch ((op >> 26) & 0x3) {
-        case 0: {
-            switch ((op >> 5) & 0x1f) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-            case 24:
-            case 25:
-            case 26:
-            case 27:
-                return P(unidentified)(ctx);
-            case 4: {
-                if ((op & 0xff00fff) == 0x1f00c9f) {
-                    goto insn_addr_offset_none_addr_unk_Rt_13_LDA; /* 0x01f00c9f | 0xf00ff000 */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 5:
-            case 7:
-            case 13:
-            case 15:
-            case 21:
-            case 23:
-            case 29:
-            case 31: {
-                if ((op & 0xf3000b0) == 0x13000b0) {
-                    goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x013000b0 | 0xf0cfff4f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 6:
-            case 14:
-            case 22:
-            case 30: {
-                if ((op & 0xf2000f0) == 0x12000d0) {
-                    goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x012000d0 | 0xf0dfff0f */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            case 20:
-            case 28: {
-                if ((op & 0xfb00eff) == 0x1b00e9f) {
-                    goto insn_addr_offset_none_addr_unk_Rt_13_LDA; /* 0x01b00e9f | 0xf04ff100 */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 1: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_addrmode_imm12_pre_addr_unk_Rt_2_LDRB_PRE_IMM; /* 0x05300000 | 0xf0cfffff */
-            case 1: {
-                if ((op & 0xf300010) == 0x7300000) {
-                    goto insn_ldst_so_reg_addr_unk_Rt_2_LDRB_PRE_REG; /* 0x07300000 | 0xf0cfffef */
-                } else {
-                    return P(unidentified)(ctx);
-                }
-            }
-            }
-        }
-        case 2: {
-            switch ((op >> 25) & 0x1) {
-            case 0:
-                goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
-            case 1:
-                goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
-            }
-        }
-        case 3: {
-            if ((op & 0xf300000) == 0xd300000) {
-                goto insn_addrmode5_pre_addr_4_LDC2L_PRE; /* 0x0d300000 | 0xf0cfffff */
-            } else {
-                return P(unidentified)(ctx);
-            }
-        }
-        }
-    }
-    }
+switch ((op >> 20) & 0x1f) {
+case 0:
+{
+	switch ((op >> 25) & 0x7) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1) {
+		case 0:
+		{
+			if ((op & 0xf2000f0) == 0xd0) {
+			insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST:;
+				struct bitslice offset = { .nruns = 4, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 8, 4, 4 }, { 22, 9, 1 }, { 23, 8, 1 } } };
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+				return P(addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST)(ctx, offset, Rt, addr); /* 0x000000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		{
+			if ((op & 0xf3000b0) == 0xb0) {
+			insn_GPR_Rt_addr_offset_none_addr_am3offset_offset_S_2_STRD_POST:;
+				struct bitslice offset = { .nruns = 4, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 8, 4, 4 }, { 22, 9, 1 }, { 23, 8, 1 } } };
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+				return P(GPR_Rt_addr_offset_none_addr_am3offset_offset_S_2_STRD_POST)(ctx, offset, Rt, addr); /* 0x000000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		if ((op & 0xf3f0000) == 0x20f0000) {
+		insn_adrlabel_label_unk_Rd_1_ADR:;
+			struct bitslice label = { .nruns = 2, .runs = (struct bitslice_run[]){ { 0, 0, 12 }, { 22, 12, 2 } } };
+			struct bitslice Rd = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			return P(adrlabel_label_unk_Rd_1_ADR)(ctx, label, Rd); /* 0x020f0000 | 0xf0c0ffff */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 2:
+	{
+	insn_GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM:;
+		struct bitslice offset = { .nruns = 2, .runs = (struct bitslice_run[]){ { 0, 0, 12 }, { 23, 12, 1 } } };
+		struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+		struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+		return P(GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM)(ctx, offset, Rt, addr); /* 0x04000000 | 0xf0efffff */
+	}
+	case 3:
+	{
+		if ((op & 0xf100010) == 0x6000000) {
+		insn_GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG:;
+			struct bitslice offset = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 5, 5, 7 }, { 23, 12, 1 } } };
+			struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+			return P(GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG)(ctx, offset, Rt, addr); /* 0x06000000 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 4:
+	{
+	insn_GPR_Rn_reglist_regs_S_16_STMDA:;
+		struct bitslice regs = { .nruns = 1, .runs = (struct bitslice_run[]){ { 0, 0, 16 } } };
+		struct bitslice Rn = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+		return P(GPR_Rn_reglist_regs_S_16_STMDA)(ctx, regs, Rn); /* 0x08000000 | 0xf1efffff */
+	}
+	case 5:
+	{
+	insn_br_target_target_pred_p_B_1_Bcc:;
+		struct bitslice target = { .nruns = 1, .runs = (struct bitslice_run[]){ { 0, 0, 24 } } };
+		struct bitslice p = { .nruns = 1, .runs = (struct bitslice_run[]){ { 28, 0, 4 } } };
+		return P(br_target_target_pred_p_B_1_Bcc)(ctx, target, p); /* 0x0a000000 | 0xf0ffffff */
+	}
+	case 6:
+		return P(unidentified)(ctx);
+	case 7:
+	{
+		if ((op & 0xf100010) == 0xe000010) {
+		insn_GPR_Rt_4_MCR:;
+			struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			return P(GPR_Rt_4_MCR)(ctx, Rt); /* 0x0e000010 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 1:
+{
+	switch ((op >> 26) & 0x3) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1) {
+		case 0:
+		{
+			if ((op & 0xf2000f0) == 0xd0) {
+				goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		{
+			if ((op & 0xf3000b0) == 0x1000b0) {
+				goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x001000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+		{
+		insn_addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM:;
+			struct bitslice offset = { .nruns = 2, .runs = (struct bitslice_run[]){ { 0, 0, 12 }, { 23, 12, 1 } } };
+			struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+			return P(addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM)(ctx, offset, Rt, addr); /* 0x04100000 | 0xf0efffff */
+		}
+		case 1:
+		{
+			if ((op & 0xf100010) == 0x6100000) {
+			insn_addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG:;
+				struct bitslice offset = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 5, 5, 7 }, { 23, 12, 1 } } };
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+				return P(addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG)(ctx, offset, Rt, addr); /* 0x06100000 | 0xf0efffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 2:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+		{
+		insn_GPR_Rn_reglist_regs_16_LDMDA:;
+			struct bitslice regs = { .nruns = 1, .runs = (struct bitslice_run[]){ { 0, 0, 16 } } };
+			struct bitslice Rn = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+			return P(GPR_Rn_reglist_regs_16_LDMDA)(ctx, regs, Rn); /* 0x08100000 | 0xf1efffff */
+		}
+		case 1:
+			goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
+		}
+	}
+	case 3:
+	{
+		if ((op & 0xf100010) == 0xe100010) {
+		insn_unk_Rt_13_MRC:;
+			struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			return P(unk_Rt_13_MRC)(ctx, Rt); /* 0x0e100010 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 2:
+case 10:
+{
+	switch ((op >> 25) & 0x7) {
+	case 0:
+	{
+		if ((op & 0xf700ff0) == 0x2000b0) {
+			struct bitslice Rm = { .nruns = 2, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 23, 4, 1 } } };
+			struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+			return P(GPR_Rt_addr_offset_none_addr_postidx_reg_Rm_S_1_STRHTr)(ctx, Rm, Rt, addr); /* 0x002000b0 | 0xf08ff00f */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 1:
+		return P(unidentified)(ctx);
+	case 2:
+		goto insn_GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM; /* 0x04000000 | 0xf0efffff */
+	case 3:
+	{
+		if ((op & 0xf100010) == 0x6000000) {
+			goto insn_GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG; /* 0x06000000 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 4:
+		goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
+	case 5:
+		goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
+	case 6:
+	{
+	insn_addr_offset_none_addr_postidx_imm8s4_offset_S_4_STC2L_POST:;
+		struct bitslice offset = { .nruns = 2, .runs = (struct bitslice_run[]){ { 0, 0, 8 }, { 23, 8, 1 } } };
+		struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+		return P(addr_offset_none_addr_postidx_imm8s4_offset_S_4_STC2L_POST)(ctx, offset, addr); /* 0x0c200000 | 0xf0cfffff */
+	}
+	case 7:
+	{
+		if ((op & 0xf100010) == 0xe000010) {
+			goto insn_GPR_Rt_4_MCR; /* 0x0e000010 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 3:
+case 11:
+{
+	switch ((op >> 26) & 0x3) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1) {
+		case 0:
+		{
+			if ((op & 0xf700ff0) == 0x3000d0) {
+			insn_addr_offset_none_addr_postidx_reg_Rm_unk_Rt_3_LDRHTr:;
+				struct bitslice Rm = { .nruns = 2, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 23, 4, 1 } } };
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+				return P(addr_offset_none_addr_postidx_reg_Rm_unk_Rt_3_LDRHTr)(ctx, Rm, Rt, addr); /* 0x003000d0 | 0xf08ff00f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		{
+			if ((op & 0xf700fb0) == 0x3000b0) {
+				goto insn_addr_offset_none_addr_postidx_reg_Rm_unk_Rt_3_LDRHTr; /* 0x003000b0 | 0xf08ff04f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM; /* 0x04100000 | 0xf0efffff */
+		case 1:
+		{
+			if ((op & 0xf100010) == 0x6100000) {
+				goto insn_addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG; /* 0x06100000 | 0xf0efffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 2:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
+		case 1:
+			goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
+		}
+	}
+	case 3:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+		{
+		insn_addr_offset_none_addr_postidx_imm8s4_offset_4_LDC2L_POST:;
+			struct bitslice offset = { .nruns = 2, .runs = (struct bitslice_run[]){ { 0, 0, 8 }, { 23, 8, 1 } } };
+			struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+			return P(addr_offset_none_addr_postidx_imm8s4_offset_4_LDC2L_POST)(ctx, offset, addr); /* 0x0c300000 | 0xf0cfffff */
+		}
+		case 1:
+		{
+			if ((op & 0xf100010) == 0xe100010) {
+				goto insn_unk_Rt_13_MRC; /* 0x0e100010 | 0xf0efffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	}
+}
+case 4:
+{
+	switch ((op >> 25) & 0x7) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1) {
+		case 0:
+		{
+			if ((op & 0xf2000f0) == 0xd0) {
+				goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		{
+			if ((op & 0xf3000b0) == 0xb0) {
+				goto insn_GPR_Rt_addr_offset_none_addr_am3offset_offset_S_2_STRD_POST; /* 0x000000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		if ((op & 0xf3f0000) == 0x20f0000) {
+			goto insn_adrlabel_label_unk_Rd_1_ADR; /* 0x020f0000 | 0xf0c0ffff */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 2:
+		goto insn_GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM; /* 0x04000000 | 0xf0efffff */
+	case 3:
+	{
+		if ((op & 0xf100010) == 0x6000000) {
+			goto insn_GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG; /* 0x06000000 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 4:
+		goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
+	case 5:
+		goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
+	case 6:
+	{
+		if ((op & 0xff00fd0) == 0xc400b10) {
+			goto insn_GPR_Rt_4_MCR; /* 0x0c400b10 | 0xf00ff02f */
+		} else {
+		insn_GPRnopc_Rt_4_MCRR:;
+			struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			return P(GPRnopc_Rt_4_MCRR)(ctx, Rt); /* 0x0c400000 | 0xf00fffff */
+		}
+	}
+	case 7:
+	{
+		if ((op & 0xf100010) == 0xe000010) {
+			goto insn_GPR_Rt_4_MCR; /* 0x0e000010 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 5:
+{
+	switch ((op >> 25) & 0x7) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1) {
+		case 0:
+		{
+			if ((op & 0xf2000f0) == 0xd0) {
+				goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		{
+			if ((op & 0xf3000b0) == 0x1000b0) {
+				goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x001000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+		return P(unidentified)(ctx);
+	case 2:
+		goto insn_addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM; /* 0x04100000 | 0xf0efffff */
+	case 3:
+	{
+		if ((op & 0xf100010) == 0x6100000) {
+			goto insn_addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG; /* 0x06100000 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 4:
+		goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
+	case 5:
+		goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
+	case 6:
+	{
+		if ((op & 0xff00ed0) == 0xc500a10) {
+			goto insn_unk_Rt_13_MRC; /* 0x0c500a10 | 0xf00ff12f */
+		} else {
+			goto insn_GPRnopc_Rt_4_MCRR; /* 0x0c500000 | 0xf00fffff */
+		}
+	}
+	case 7:
+	{
+		if ((op & 0xf100010) == 0xe100010) {
+			goto insn_unk_Rt_13_MRC; /* 0x0e100010 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 6:
+case 14:
+{
+	switch ((op >> 25) & 0x7) {
+	case 0:
+	{
+		if ((op & 0xf7000f0) == 0x6000b0) {
+			struct bitslice offset = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 8, 4, 4 }, { 23, 8, 1 } } };
+			struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+			return P(GPR_Rt_addr_offset_none_addr_postidx_imm8_offset_S_1_STRHTi)(ctx, offset, Rt, addr); /* 0x006000b0 | 0xf08fff0f */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 1:
+		return P(unidentified)(ctx);
+	case 2:
+		goto insn_GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM; /* 0x04000000 | 0xf0efffff */
+	case 3:
+	{
+		if ((op & 0xf100010) == 0x6000000) {
+			goto insn_GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG; /* 0x06000000 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 4:
+		goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
+	case 5:
+		goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
+	case 6:
+		goto insn_addr_offset_none_addr_postidx_imm8s4_offset_S_4_STC2L_POST; /* 0x0c200000 | 0xf0cfffff */
+	case 7:
+	{
+		if ((op & 0xf100010) == 0xe000010) {
+			goto insn_GPR_Rt_4_MCR; /* 0x0e000010 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 7:
+case 15:
+{
+	switch ((op >> 26) & 0x3) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1) {
+		case 0:
+		{
+			if ((op & 0xf7000f0) == 0x7000d0) {
+			insn_addr_offset_none_addr_postidx_imm8_offset_unk_Rt_3_LDRHTi:;
+				struct bitslice offset = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 8, 4, 4 }, { 23, 8, 1 } } };
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+				return P(addr_offset_none_addr_postidx_imm8_offset_unk_Rt_3_LDRHTi)(ctx, offset, Rt, addr); /* 0x007000d0 | 0xf08fff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		{
+			if ((op & 0xf7000b0) == 0x7000b0) {
+				goto insn_addr_offset_none_addr_postidx_imm8_offset_unk_Rt_3_LDRHTi; /* 0x007000b0 | 0xf08fff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM; /* 0x04100000 | 0xf0efffff */
+		case 1:
+		{
+			if ((op & 0xf100010) == 0x6100000) {
+				goto insn_addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG; /* 0x06100000 | 0xf0efffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 2:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
+		case 1:
+			goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
+		}
+	}
+	case 3:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_addr_offset_none_addr_postidx_imm8s4_offset_4_LDC2L_POST; /* 0x0c300000 | 0xf0cfffff */
+		case 1:
+		{
+			if ((op & 0xf100010) == 0xe100010) {
+				goto insn_unk_Rt_13_MRC; /* 0x0e100010 | 0xf0efffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	}
+}
+case 8:
+{
+	switch ((op >> 25) & 0x7) {
+	case 0:
+	{
+		switch ((op >> 4) & 0x3) {
+		case 0:
+		{
+			if ((op & 0xfe00ff0) == 0x800000) {
+			insn_GPR_Rn_GPR_Rm_unk_Rd_1_ADDrr:;
+				struct bitslice Rm = { .nruns = 1, .runs = (struct bitslice_run[]){ { 0, 0, 4 } } };
+				struct bitslice Rd = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				struct bitslice Rn = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+				return P(GPR_Rn_GPR_Rm_unk_Rd_1_ADDrr)(ctx, Rm, Rd, Rn); /* 0x00800000 | 0xf01ff00f */
+			} else {
+			insn_GPR_Rn_so_reg_imm_shift_unk_Rd_1_ADDrsi:;
+				struct bitslice shift = { .nruns = 2, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 5, 5, 7 } } };
+				struct bitslice Rd = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				struct bitslice Rn = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+				return P(GPR_Rn_so_reg_imm_shift_unk_Rd_1_ADDrsi)(ctx, shift, Rd, Rn); /* 0x00800000 | 0xf01fffcf */
+			}
+		}
+		case 1:
+		{
+			switch ((op >> 7) & 0x1) {
+			case 0:
+			{
+			insn_GPR_Rn_so_reg_reg_shift_unk_Rd_1_ADDrsr:;
+				struct bitslice shift = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 5, 5, 2 }, { 8, 8, 4 } } };
+				struct bitslice Rd = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				struct bitslice Rn = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+				return P(GPR_Rn_so_reg_reg_shift_unk_Rd_1_ADDrsr)(ctx, shift, Rd, Rn); /* 0x00800010 | 0xf01fff6f */
+			}
+			case 1:
+			{
+				if ((op & 0xf2000f0) == 0xd0) {
+					goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
+				} else {
+					return P(unidentified)(ctx);
+				}
+			}
+			}
+		}
+		case 2:
+			goto insn_GPR_Rn_so_reg_imm_shift_unk_Rd_1_ADDrsi; /* 0x00800000 | 0xf01fffef */
+		case 3:
+		{
+			switch ((op >> 7) & 0x1) {
+			case 0:
+				goto insn_GPR_Rn_so_reg_reg_shift_unk_Rd_1_ADDrsr; /* 0x00800010 | 0xf01fff6f */
+			case 1:
+				goto insn_GPR_Rt_addr_offset_none_addr_am3offset_offset_S_2_STRD_POST; /* 0x000000b0 | 0xf0cfff4f */
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 16) & 0xf) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+		{
+		insn_GPR_Rn_unk_Rd_1_ADDri:;
+			struct bitslice Rd = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			struct bitslice Rn = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+			return P(GPR_Rn_unk_Rd_1_ADDri)(ctx, Rd, Rn); /* 0x02800000 | 0xf01fffff */
+		}
+		case 15:
+			goto insn_adrlabel_label_unk_Rd_1_ADR; /* 0x020f0000 | 0xf0c0ffff */
+		}
+	}
+	case 2:
+		goto insn_GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM; /* 0x04000000 | 0xf0efffff */
+	case 3:
+	{
+		if ((op & 0xf100010) == 0x6000000) {
+			goto insn_GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG; /* 0x06000000 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 4:
+		goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
+	case 5:
+		goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
+	case 6:
+	{
+	insn_addr_offset_none_addr_S_4_STC2L_OPTION:;
+		struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+		return P(addr_offset_none_addr_S_4_STC2L_OPTION)(ctx, addr); /* 0x0c800000 | 0xf04fffff */
+	}
+	case 7:
+	{
+		if ((op & 0xf100010) == 0xe000010) {
+			goto insn_GPR_Rt_4_MCR; /* 0x0e000010 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 9:
+{
+	switch ((op >> 25) & 0x7) {
+	case 0:
+	{
+		switch ((op >> 4) & 0x3) {
+		case 0:
+		{
+			if ((op & 0xfe00ff0) == 0x800000) {
+				goto insn_GPR_Rn_GPR_Rm_unk_Rd_1_ADDrr; /* 0x00800000 | 0xf01ff00f */
+			} else {
+				goto insn_GPR_Rn_so_reg_imm_shift_unk_Rd_1_ADDrsi; /* 0x00800000 | 0xf01fffcf */
+			}
+		}
+		case 1:
+		{
+			switch ((op >> 7) & 0x1) {
+			case 0:
+				goto insn_GPR_Rn_so_reg_reg_shift_unk_Rd_1_ADDrsr; /* 0x00800010 | 0xf01fff6f */
+			case 1:
+			{
+				if ((op & 0xf2000f0) == 0xd0) {
+					goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
+				} else {
+					return P(unidentified)(ctx);
+				}
+			}
+			}
+		}
+		case 2:
+			goto insn_GPR_Rn_so_reg_imm_shift_unk_Rd_1_ADDrsi; /* 0x00800000 | 0xf01fffef */
+		case 3:
+		{
+			switch ((op >> 7) & 0x1) {
+			case 0:
+				goto insn_GPR_Rn_so_reg_reg_shift_unk_Rd_1_ADDrsr; /* 0x00800010 | 0xf01fff6f */
+			case 1:
+				goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x001000b0 | 0xf0cfff4f */
+			}
+		}
+		}
+	}
+	case 1:
+		goto insn_GPR_Rn_unk_Rd_1_ADDri; /* 0x02800000 | 0xf01fffff */
+	case 2:
+		goto insn_addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM; /* 0x04100000 | 0xf0efffff */
+	case 3:
+	{
+		if ((op & 0xf100010) == 0x6100000) {
+			goto insn_addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG; /* 0x06100000 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 4:
+		goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
+	case 5:
+		goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
+	case 6:
+	{
+	insn_addr_offset_none_addr_4_LDC2L_OPTION:;
+		struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+		return P(addr_offset_none_addr_4_LDC2L_OPTION)(ctx, addr); /* 0x0c900000 | 0xf04fffff */
+	}
+	case 7:
+	{
+		if ((op & 0xf100010) == 0xe100010) {
+			goto insn_unk_Rt_13_MRC; /* 0x0e100010 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 12:
+{
+	switch ((op >> 25) & 0x7) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1) {
+		case 0:
+		{
+			if ((op & 0xf2000f0) == 0xd0) {
+				goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		{
+			if ((op & 0xf3000b0) == 0xb0) {
+				goto insn_GPR_Rt_addr_offset_none_addr_am3offset_offset_S_2_STRD_POST; /* 0x000000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		if ((op & 0xf3f0000) == 0x20f0000) {
+			goto insn_adrlabel_label_unk_Rd_1_ADR; /* 0x020f0000 | 0xf0c0ffff */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 2:
+		goto insn_GPR_Rt_addr_offset_none_addr_am2offset_imm_offset_S_4_STRBT_POST_IMM; /* 0x04000000 | 0xf0efffff */
+	case 3:
+	{
+		if ((op & 0xf100010) == 0x6000000) {
+			goto insn_GPR_Rt_addr_offset_none_addr_am2offset_reg_offset_S_4_STRBT_POST_REG; /* 0x06000000 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 4:
+		goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
+	case 5:
+		goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
+	case 6:
+		goto insn_addr_offset_none_addr_S_4_STC2L_OPTION; /* 0x0c800000 | 0xf04fffff */
+	case 7:
+	{
+		if ((op & 0xf100010) == 0xe000010) {
+			goto insn_GPR_Rt_4_MCR; /* 0x0e000010 | 0xf0efffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 13:
+{
+	switch ((op >> 26) & 0x3) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1) {
+		case 0:
+		{
+			if ((op & 0xf2000f0) == 0xd0) {
+				goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x000000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		{
+			if ((op & 0xf3000b0) == 0x1000b0) {
+				goto insn_addr_offset_none_addr_am3offset_offset_unk_Rt_4_LDRD_POST; /* 0x001000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_addr_offset_none_addr_am2offset_imm_offset_unk_Rt_4_LDRBT_POST_IMM; /* 0x04100000 | 0xf0efffff */
+		case 1:
+		{
+			if ((op & 0xf100010) == 0x6100000) {
+				goto insn_addr_offset_none_addr_am2offset_reg_offset_unk_Rt_4_LDRBT_POST_REG; /* 0x06100000 | 0xf0efffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 2:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
+		case 1:
+			goto insn_br_target_target_pred_p_B_1_Bcc; /* 0x0a000000 | 0xf0ffffff */
+		}
+	}
+	case 3:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_addr_offset_none_addr_4_LDC2L_OPTION; /* 0x0c900000 | 0xf04fffff */
+		case 1:
+		{
+			if ((op & 0xf100010) == 0xe100010) {
+				goto insn_unk_Rt_13_MRC; /* 0x0e100010 | 0xf0efffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	}
+}
+case 16:
+{
+	switch ((op >> 25) & 0x7) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x3) {
+		case 0:
+		{
+			if ((op & 0xfb00ff0) == 0x1000090) {
+			insn_addr_offset_none_addr_unk_Rt_13_LDA:;
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+				return P(addr_offset_none_addr_unk_Rt_13_LDA)(ctx, Rt, addr); /* 0x01000090 | 0xf04ff00f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		case 3:
+		{
+			if ((op & 0xf3000b0) == 0x10000b0) {
+			insn_GPR_Rt_addrmode3_addr_S_2_STRD:;
+				struct bitslice addr = { .nruns = 5, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 8, 4, 4 }, { 16, 9, 4 }, { 22, 13, 1 }, { 23, 8, 1 } } };
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				return P(GPR_Rt_addrmode3_addr_S_2_STRD)(ctx, addr, Rt); /* 0x010000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 2:
+		{
+			if ((op & 0xf2000f0) == 0x10000d0) {
+			insn_addrmode3_addr_unk_Rt_4_LDRD:;
+				struct bitslice addr = { .nruns = 5, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 8, 4, 4 }, { 16, 9, 4 }, { 22, 13, 1 }, { 23, 8, 1 } } };
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				return P(addrmode3_addr_unk_Rt_4_LDRD)(ctx, addr, Rt); /* 0x010000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+	insn_unk_Rd_5_MOVTi16:;
+		struct bitslice Rd = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+		return P(unk_Rd_5_MOVTi16)(ctx, Rd); /* 0x03000000 | 0xf04fffff */
+	}
+	case 2:
+	{
+	insn_GPR_Rt_addrmode_imm12_addr_S_1_STRi12:;
+		struct bitslice addr = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 12 }, { 16, 13, 4 }, { 23, 12, 1 } } };
+		struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+		return P(GPR_Rt_addrmode_imm12_addr_S_1_STRi12)(ctx, addr, Rt); /* 0x05000000 | 0xf08fffff */
+	}
+	case 3:
+	{
+		if ((op & 0xf700010) == 0x7000000) {
+		insn_GPR_Rt_ldst_so_reg_shift_S_1_STRrs:;
+			struct bitslice shift = { .nruns = 4, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 5, 5, 7 }, { 16, 13, 4 }, { 23, 12, 1 } } };
+			struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			return P(GPR_Rt_ldst_so_reg_shift_S_1_STRrs)(ctx, shift, Rt); /* 0x07000000 | 0xf08fffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 4:
+		goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
+	case 5:
+	{
+	insn_bl_target_func_2_BL:;
+		struct bitslice func = { .nruns = 1, .runs = (struct bitslice_run[]){ { 0, 0, 24 } } };
+		return P(bl_target_func_2_BL)(ctx, func); /* 0x0b000000 | 0xf0ffffff */
+	}
+	case 6:
+	{
+		switch ((op >> 9) & 0x7) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 6:
+		case 7:
+		{
+		insn_addrmode5_addr_S_4_STC2L_OFFSET:;
+			struct bitslice addr = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 8 }, { 16, 9, 4 }, { 23, 8, 1 } } };
+			return P(addrmode5_addr_S_4_STC2L_OFFSET)(ctx, addr); /* 0x0d000000 | 0xf0cfffff */
+		}
+		case 5:
+		{
+		insn_addrmode5_addr_8_LDC2L_OFFSET:;
+			struct bitslice addr = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 8 }, { 16, 9, 4 }, { 23, 8, 1 } } };
+			return P(addrmode5_addr_8_LDC2L_OFFSET)(ctx, addr); /* 0x0d000a00 | 0xf0cff1ff */
+		}
+		}
+	}
+	case 7:
+		return P(unidentified)(ctx);
+	}
+}
+case 17:
+case 21:
+{
+	switch ((op >> 26) & 0x3) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1) {
+		case 0:
+		{
+			if ((op & 0xf2000f0) == 0x10000d0) {
+				goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x010000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		{
+			if ((op & 0xf3000b0) == 0x11000b0) {
+				goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x011000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+		{
+		insn_addrmode_imm12_addr_unk_Rt_2_LDRBi12:;
+			struct bitslice addr = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 12 }, { 16, 13, 4 }, { 23, 12, 1 } } };
+			struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			return P(addrmode_imm12_addr_unk_Rt_2_LDRBi12)(ctx, addr, Rt); /* 0x05100000 | 0xf0cfffff */
+		}
+		case 1:
+		{
+			if ((op & 0xf300010) == 0x7100000) {
+			insn_ldst_so_reg_shift_unk_Rt_2_LDRBrs:;
+				struct bitslice shift = { .nruns = 4, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 5, 5, 7 }, { 16, 13, 4 }, { 23, 12, 1 } } };
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				return P(ldst_so_reg_shift_unk_Rt_2_LDRBrs)(ctx, shift, Rt); /* 0x07100000 | 0xf0cfffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 2:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
+		case 1:
+			goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
+		}
+	}
+	case 3:
+	{
+		if ((op & 0xf300000) == 0xd100000) {
+			goto insn_addrmode5_addr_8_LDC2L_OFFSET; /* 0x0d100000 | 0xf0cfffff */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 18:
+{
+	switch ((op >> 26) & 0x3) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x7) {
+		case 0:
+		{
+			if ((op & 0xffffff0) == 0x12fff10) {
+				struct bitslice dst = { .nruns = 1, .runs = (struct bitslice_run[]){ { 0, 0, 4 } } };
+				return P(GPR_dst_B_2_BX)(ctx, dst); /* 0x012fff10 | 0xf000000f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		{
+			if ((op & 0xfffffe0) == 0x12fff20) {
+				struct bitslice func = { .nruns = 1, .runs = (struct bitslice_run[]){ { 0, 0, 4 } } };
+				return P(GPR_func_3_BLX)(ctx, func); /* 0x012fff20 | 0xf000001f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 2:
+		case 3:
+		case 4:
+			return P(unidentified)(ctx);
+		case 5:
+		case 7:
+		{
+			if ((op & 0xf3000b0) == 0x12000b0) {
+			insn_GPR_Rt_addrmode3_pre_addr_S_2_STRD_PRE:;
+				struct bitslice addr = { .nruns = 5, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 8, 4, 4 }, { 16, 9, 4 }, { 22, 13, 1 }, { 23, 8, 1 } } };
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				return P(GPR_Rt_addrmode3_pre_addr_S_2_STRD_PRE)(ctx, addr, Rt); /* 0x012000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 6:
+		{
+			if ((op & 0xf2000f0) == 0x12000d0) {
+			insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE:;
+				struct bitslice addr = { .nruns = 5, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 8, 4, 4 }, { 16, 9, 4 }, { 22, 13, 1 }, { 23, 8, 1 } } };
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				return P(addrmode3_pre_addr_unk_Rt_4_LDRD_PRE)(ctx, addr, Rt); /* 0x012000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+		{
+		insn_GPR_Rt_addrmode_imm12_pre_addr_S_2_STRB_PRE_IMM:;
+			struct bitslice addr = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 12 }, { 16, 13, 4 }, { 23, 12, 1 } } };
+			struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			return P(GPR_Rt_addrmode_imm12_pre_addr_S_2_STRB_PRE_IMM)(ctx, addr, Rt); /* 0x05200000 | 0xf0cfffff */
+		}
+		case 1:
+		{
+			if ((op & 0xf300010) == 0x7200000) {
+			insn_GPR_Rt_ldst_so_reg_addr_S_2_STRB_PRE_REG:;
+				struct bitslice addr = { .nruns = 4, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 5, 5, 7 }, { 16, 13, 4 }, { 23, 12, 1 } } };
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				return P(GPR_Rt_ldst_so_reg_addr_S_2_STRB_PRE_REG)(ctx, addr, Rt); /* 0x07200000 | 0xf0cfffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 2:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
+		case 1:
+			goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
+		}
+	}
+	case 3:
+	{
+		if ((op & 0xf300000) == 0xd200000) {
+		insn_addrmode5_pre_addr_S_4_STC2L_PRE:;
+			struct bitslice addr = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 8 }, { 16, 9, 4 }, { 23, 8, 1 } } };
+			return P(addrmode5_pre_addr_S_4_STC2L_PRE)(ctx, addr); /* 0x0d200000 | 0xf0cfffff */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 19:
+case 23:
+{
+	switch ((op >> 26) & 0x3) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1) {
+		case 0:
+		{
+			if ((op & 0xf2000f0) == 0x12000d0) {
+				goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x012000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		{
+			if ((op & 0xf3000b0) == 0x13000b0) {
+				goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x013000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+		{
+		insn_addrmode_imm12_pre_addr_unk_Rt_2_LDRB_PRE_IMM:;
+			struct bitslice addr = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 12 }, { 16, 13, 4 }, { 23, 12, 1 } } };
+			struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			return P(addrmode_imm12_pre_addr_unk_Rt_2_LDRB_PRE_IMM)(ctx, addr, Rt); /* 0x05300000 | 0xf0cfffff */
+		}
+		case 1:
+		{
+			if ((op & 0xf300010) == 0x7300000) {
+			insn_ldst_so_reg_addr_unk_Rt_2_LDRB_PRE_REG:;
+				struct bitslice addr = { .nruns = 4, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 5, 5, 7 }, { 16, 13, 4 }, { 23, 12, 1 } } };
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				return P(ldst_so_reg_addr_unk_Rt_2_LDRB_PRE_REG)(ctx, addr, Rt); /* 0x07300000 | 0xf0cfffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 2:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
+		case 1:
+			goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
+		}
+	}
+	case 3:
+	{
+		if ((op & 0xf300000) == 0xd300000) {
+		insn_addrmode5_pre_addr_4_LDC2L_PRE:;
+			struct bitslice addr = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 8 }, { 16, 9, 4 }, { 23, 8, 1 } } };
+			return P(addrmode5_pre_addr_4_LDC2L_PRE)(ctx, addr); /* 0x0d300000 | 0xf0cfffff */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 20:
+{
+	switch ((op >> 25) & 0x7) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x3) {
+		case 0:
+		{
+			if ((op & 0xfb00ff0) == 0x1000090) {
+				goto insn_addr_offset_none_addr_unk_Rt_13_LDA; /* 0x01000090 | 0xf04ff00f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		case 3:
+		{
+			if ((op & 0xf3000b0) == 0x10000b0) {
+				goto insn_GPR_Rt_addrmode3_addr_S_2_STRD; /* 0x010000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 2:
+		{
+			if ((op & 0xf2000f0) == 0x10000d0) {
+				goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x010000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+		goto insn_unk_Rd_5_MOVTi16; /* 0x03000000 | 0xf04fffff */
+	case 2:
+	{
+	insn_GPRnopc_Rt_addrmode_imm12_addr_S_1_STRBi12:;
+		struct bitslice addr = { .nruns = 3, .runs = (struct bitslice_run[]){ { 0, 0, 12 }, { 16, 13, 4 }, { 23, 12, 1 } } };
+		struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+		return P(GPRnopc_Rt_addrmode_imm12_addr_S_1_STRBi12)(ctx, addr, Rt); /* 0x05400000 | 0xf08fffff */
+	}
+	case 3:
+	{
+		if ((op & 0xf700010) == 0x7400000) {
+		insn_GPRnopc_Rt_ldst_so_reg_shift_S_1_STRBrs:;
+			struct bitslice shift = { .nruns = 4, .runs = (struct bitslice_run[]){ { 0, 0, 4 }, { 5, 5, 7 }, { 16, 13, 4 }, { 23, 12, 1 } } };
+			struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+			return P(GPRnopc_Rt_ldst_so_reg_shift_S_1_STRBrs)(ctx, shift, Rt); /* 0x07400000 | 0xf08fffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 4:
+		goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
+	case 5:
+		goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
+	case 6:
+	{
+		switch ((op >> 9) & 0x7) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 6:
+		case 7:
+			goto insn_addrmode5_addr_S_4_STC2L_OFFSET; /* 0x0d000000 | 0xf0cfffff */
+		case 5:
+			goto insn_addrmode5_addr_8_LDC2L_OFFSET; /* 0x0d000a00 | 0xf0cff1ff */
+		}
+	}
+	case 7:
+		return P(unidentified)(ctx);
+	}
+}
+case 22:
+{
+	switch ((op >> 26) & 0x3) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1) {
+		case 0:
+		{
+			if ((op & 0xf2000f0) == 0x12000d0) {
+				goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x012000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 1:
+		{
+			if ((op & 0xf3000b0) == 0x12000b0) {
+				goto insn_GPR_Rt_addrmode3_pre_addr_S_2_STRD_PRE; /* 0x012000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rt_addrmode_imm12_pre_addr_S_2_STRB_PRE_IMM; /* 0x05200000 | 0xf0cfffff */
+		case 1:
+		{
+			if ((op & 0xf300010) == 0x7200000) {
+				goto insn_GPR_Rt_ldst_so_reg_addr_S_2_STRB_PRE_REG; /* 0x07200000 | 0xf0cfffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 2:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
+		case 1:
+			goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
+		}
+	}
+	case 3:
+	{
+		if ((op & 0xf300000) == 0xd200000) {
+			goto insn_addrmode5_pre_addr_S_4_STC2L_PRE; /* 0x0d200000 | 0xf0cfffff */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 24:
+{
+	switch ((op >> 26) & 0x3) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1f) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 8:
+		case 9:
+		case 10:
+		case 11:
+		case 12:
+		case 16:
+		case 17:
+		case 18:
+		case 19:
+		case 24:
+		case 25:
+		case 26:
+		case 27:
+			return P(unidentified)(ctx);
+		case 4:
+		{
+			if ((op & 0xfb0fff0) == 0x180fc90) {
+			insn_GPR_Rt_addr_offset_none_addr_S_3_STL:;
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 0, 0, 4 } } };
+				struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+				return P(GPR_Rt_addr_offset_none_addr_S_3_STL)(ctx, Rt, addr); /* 0x0180fc90 | 0xf04f000f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 5:
+		case 7:
+		case 13:
+		case 15:
+		case 21:
+		case 23:
+		case 29:
+		case 31:
+		{
+			if ((op & 0xf3000b0) == 0x10000b0) {
+				goto insn_GPR_Rt_addrmode3_addr_S_2_STRD; /* 0x010000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 6:
+		case 14:
+		case 22:
+		case 30:
+		{
+			if ((op & 0xf2000f0) == 0x10000d0) {
+				goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x010000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 20:
+		case 28:
+		{
+			if ((op & 0xfb00ef0) == 0x1800e90) {
+			insn_GPR_Rt_addr_offset_none_addr_unk_Rd_S_6_STLEX:;
+				struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 0, 0, 4 } } };
+				struct bitslice Rd = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+				struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+				return P(GPR_Rt_addr_offset_none_addr_unk_Rd_S_6_STLEX)(ctx, Rt, Rd, addr); /* 0x01800e90 | 0xf04ff10f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rt_addrmode_imm12_addr_S_1_STRi12; /* 0x05000000 | 0xf08fffff */
+		case 1:
+		{
+			if ((op & 0xf700010) == 0x7000000) {
+				goto insn_GPR_Rt_ldst_so_reg_shift_S_1_STRrs; /* 0x07000000 | 0xf08fffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 2:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
+		case 1:
+			goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
+		}
+	}
+	case 3:
+	{
+		switch ((op >> 9) & 0x7) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 6:
+		case 7:
+		{
+			if ((op & 0xf300000) == 0xd000000) {
+				goto insn_addrmode5_addr_S_4_STC2L_OFFSET; /* 0x0d000000 | 0xf0cfffff */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 5:
+		{
+			if ((op & 0xf300e00) == 0xd000a00) {
+				goto insn_addrmode5_addr_8_LDC2L_OFFSET; /* 0x0d000a00 | 0xf0cff1ff */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	}
+}
+case 25:
+case 29:
+{
+	switch ((op >> 26) & 0x3) {
+	case 0:
+	{
+		switch ((op >> 5) & 0xf) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 8:
+		case 9:
+		case 10:
+		case 11:
+			return P(unidentified)(ctx);
+		case 4:
+		{
+			if ((op & 0xfb00dff) == 0x1900c9f) {
+				goto insn_addr_offset_none_addr_unk_Rt_13_LDA; /* 0x01900c9f | 0xf04ff200 */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 5:
+		case 7:
+		case 13:
+		case 15:
+		{
+			if ((op & 0xf3000b0) == 0x11000b0) {
+				goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x011000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 6:
+		case 14:
+		{
+			if ((op & 0xf2000f0) == 0x10000d0) {
+				goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x010000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 12:
+		{
+			if ((op & 0xfb00fff) == 0x1900f9f) {
+				goto insn_addr_offset_none_addr_unk_Rt_13_LDA; /* 0x01900f9f | 0xf04ff000 */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_addrmode_imm12_addr_unk_Rt_2_LDRBi12; /* 0x05100000 | 0xf0cfffff */
+		case 1:
+		{
+			if ((op & 0xf300010) == 0x7100000) {
+				goto insn_ldst_so_reg_shift_unk_Rt_2_LDRBrs; /* 0x07100000 | 0xf0cfffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 2:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
+		case 1:
+			goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
+		}
+	}
+	case 3:
+	{
+		if ((op & 0xf300000) == 0xd100000) {
+			goto insn_addrmode5_addr_8_LDC2L_OFFSET; /* 0x0d100000 | 0xf0cfffff */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 26:
+{
+	switch ((op >> 25) & 0x7) {
+	case 0:
+	{
+		switch ((op >> 4) & 0x3) {
+		case 0:
+		{
+			switch ((op >> 16) & 0xf) {
+			case 0:
+			{
+				if ((op & 0xfef0ff0) == 0x1a00000) {
+				insn_GPR_Rm_unk_Rd_1_MOVr:;
+					struct bitslice Rm = { .nruns = 1, .runs = (struct bitslice_run[]){ { 0, 0, 4 } } };
+					struct bitslice Rd = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+					return P(GPR_Rm_unk_Rd_1_MOVr)(ctx, Rm, Rd); /* 0x01a00000 | 0xf010f00f */
+				} else {
+					goto insn_unk_Rd_5_MOVTi16; /* 0x01a00000 | 0xf010ffcf */
+				}
+			}
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+			{
+				if ((op & 0xfe00ff0) == 0x1a00000) {
+				insn_tcGPR_Rm_unk_Rd_1_MOVr_TC:;
+					struct bitslice Rm = { .nruns = 1, .runs = (struct bitslice_run[]){ { 0, 0, 4 } } };
+					struct bitslice Rd = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+					return P(tcGPR_Rm_unk_Rd_1_MOVr_TC)(ctx, Rm, Rd); /* 0x01a00000 | 0xf01ff00f */
+				} else {
+					return P(unidentified)(ctx);
+				}
+			}
+			}
+		}
+		case 1:
+		{
+			switch ((op >> 6) & 0x3) {
+			case 0:
+			case 1:
+			{
+				if ((op & 0xfef0090) == 0x1a00010) {
+					goto insn_unk_Rd_5_MOVTi16; /* 0x01a00010 | 0xf010ff6f */
+				} else {
+					return P(unidentified)(ctx);
+				}
+			}
+			case 2:
+			{
+				if ((op & 0xff00ef0) == 0x1a00e90) {
+					struct bitslice Rt = { .nruns = 1, .runs = (struct bitslice_run[]){ { 0, 0, 4 } } };
+					struct bitslice Rd = { .nruns = 1, .runs = (struct bitslice_run[]){ { 12, 0, 4 } } };
+					struct bitslice addr = { .nruns = 1, .runs = (struct bitslice_run[]){ { 16, 0, 4 } } };
+					return P(GPRPairOp_Rt_addr_offset_none_addr_unk_Rd_S_2_STLEXD)(ctx, Rt, Rd, addr); /* 0x01a00e90 | 0xf00ff10f */
+				} else {
+					return P(unidentified)(ctx);
+				}
+			}
+			case 3:
+				goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x012000d0 | 0xf0dfff0f */
+			}
+		}
+		case 2:
+		{
+			if ((op & 0xfef0010) == 0x1a00000) {
+				goto insn_unk_Rd_5_MOVTi16; /* 0x01a00000 | 0xf010ffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 3:
+		{
+			switch ((op >> 7) & 0x1) {
+			case 0:
+			{
+				if ((op & 0xfef0090) == 0x1a00010) {
+					goto insn_unk_Rd_5_MOVTi16; /* 0x01a00010 | 0xf010ff6f */
+				} else {
+					return P(unidentified)(ctx);
+				}
+			}
+			case 1:
+				goto insn_GPR_Rt_addrmode3_pre_addr_S_2_STRD_PRE; /* 0x012000b0 | 0xf0cfff4f */
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		if ((op & 0xfef0000) == 0x3a00000) {
+			goto insn_unk_Rd_5_MOVTi16; /* 0x03a00000 | 0xf010ffff */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 2:
+		goto insn_GPR_Rt_addrmode_imm12_pre_addr_S_2_STRB_PRE_IMM; /* 0x05200000 | 0xf0cfffff */
+	case 3:
+	{
+		if ((op & 0xf300010) == 0x7200000) {
+			goto insn_GPR_Rt_ldst_so_reg_addr_S_2_STRB_PRE_REG; /* 0x07200000 | 0xf0cfffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 4:
+		goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
+	case 5:
+		goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
+	case 6:
+		goto insn_addrmode5_pre_addr_S_4_STC2L_PRE; /* 0x0d200000 | 0xf0cfffff */
+	case 7:
+		return P(unidentified)(ctx);
+	}
+}
+case 27:
+{
+	switch ((op >> 25) & 0x7) {
+	case 0:
+	{
+		switch ((op >> 4) & 0x3) {
+		case 0:
+		{
+			switch ((op >> 16) & 0xf) {
+			case 0:
+			{
+				if ((op & 0xfef0ff0) == 0x1a00000) {
+					goto insn_GPR_Rm_unk_Rd_1_MOVr; /* 0x01a00000 | 0xf010f00f */
+				} else {
+					goto insn_unk_Rd_5_MOVTi16; /* 0x01a00000 | 0xf010ffcf */
+				}
+			}
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+			{
+				if ((op & 0xfe00ff0) == 0x1a00000) {
+					goto insn_tcGPR_Rm_unk_Rd_1_MOVr_TC; /* 0x01a00000 | 0xf01ff00f */
+				} else {
+					return P(unidentified)(ctx);
+				}
+			}
+			}
+		}
+		case 1:
+		{
+			switch ((op >> 6) & 0x3) {
+			case 0:
+			case 1:
+			{
+				if ((op & 0xfef0090) == 0x1a00010) {
+					goto insn_unk_Rd_5_MOVTi16; /* 0x01a00010 | 0xf010ff6f */
+				} else {
+					return P(unidentified)(ctx);
+				}
+			}
+			case 2:
+			{
+				if ((op & 0xfb00eff) == 0x1b00e9f) {
+					goto insn_addr_offset_none_addr_unk_Rt_13_LDA; /* 0x01b00e9f | 0xf04ff100 */
+				} else {
+					return P(unidentified)(ctx);
+				}
+			}
+			case 3:
+				goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x012000d0 | 0xf0dfff0f */
+			}
+		}
+		case 2:
+		{
+			if ((op & 0xfef0010) == 0x1a00000) {
+				goto insn_unk_Rd_5_MOVTi16; /* 0x01a00000 | 0xf010ffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 3:
+		{
+			switch ((op >> 7) & 0x1) {
+			case 0:
+			{
+				if ((op & 0xfef0090) == 0x1a00010) {
+					goto insn_unk_Rd_5_MOVTi16; /* 0x01a00010 | 0xf010ff6f */
+				} else {
+					return P(unidentified)(ctx);
+				}
+			}
+			case 1:
+				goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x013000b0 | 0xf0cfff4f */
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		if ((op & 0xfef0000) == 0x3a00000) {
+			goto insn_unk_Rd_5_MOVTi16; /* 0x03a00000 | 0xf010ffff */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 2:
+		goto insn_addrmode_imm12_pre_addr_unk_Rt_2_LDRB_PRE_IMM; /* 0x05300000 | 0xf0cfffff */
+	case 3:
+	{
+		if ((op & 0xf300010) == 0x7300000) {
+			goto insn_ldst_so_reg_addr_unk_Rt_2_LDRB_PRE_REG; /* 0x07300000 | 0xf0cfffef */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	case 4:
+		goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
+	case 5:
+		goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
+	case 6:
+		goto insn_addrmode5_pre_addr_4_LDC2L_PRE; /* 0x0d300000 | 0xf0cfffff */
+	case 7:
+		return P(unidentified)(ctx);
+	}
+}
+case 28:
+{
+	switch ((op >> 26) & 0x3) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1f) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 8:
+		case 9:
+		case 10:
+		case 11:
+		case 12:
+		case 16:
+		case 17:
+		case 18:
+		case 19:
+		case 24:
+		case 25:
+		case 26:
+		case 27:
+			return P(unidentified)(ctx);
+		case 4:
+		{
+			if ((op & 0xfb0fff0) == 0x180fc90) {
+				goto insn_GPR_Rt_addr_offset_none_addr_S_3_STL; /* 0x0180fc90 | 0xf04f000f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 5:
+		case 7:
+		case 13:
+		case 15:
+		case 21:
+		case 23:
+		case 29:
+		case 31:
+		{
+			if ((op & 0xf3000b0) == 0x10000b0) {
+				goto insn_GPR_Rt_addrmode3_addr_S_2_STRD; /* 0x010000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 6:
+		case 14:
+		case 22:
+		case 30:
+		{
+			if ((op & 0xf2000f0) == 0x10000d0) {
+				goto insn_addrmode3_addr_unk_Rt_4_LDRD; /* 0x010000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 20:
+		case 28:
+		{
+			if ((op & 0xfb00ef0) == 0x1800e90) {
+				goto insn_GPR_Rt_addr_offset_none_addr_unk_Rd_S_6_STLEX; /* 0x01800e90 | 0xf04ff10f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPRnopc_Rt_addrmode_imm12_addr_S_1_STRBi12; /* 0x05400000 | 0xf08fffff */
+		case 1:
+		{
+			if ((op & 0xf700010) == 0x7400000) {
+				goto insn_GPRnopc_Rt_ldst_so_reg_shift_S_1_STRBrs; /* 0x07400000 | 0xf08fffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 2:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
+		case 1:
+			goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
+		}
+	}
+	case 3:
+	{
+		switch ((op >> 9) & 0x7) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 6:
+		case 7:
+		{
+			if ((op & 0xf300000) == 0xd000000) {
+				goto insn_addrmode5_addr_S_4_STC2L_OFFSET; /* 0x0d000000 | 0xf0cfffff */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 5:
+		{
+			if ((op & 0xf300e00) == 0xd000a00) {
+				goto insn_addrmode5_addr_8_LDC2L_OFFSET; /* 0x0d000a00 | 0xf0cff1ff */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	}
+}
+case 30:
+{
+	switch ((op >> 26) & 0x3) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1f) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 8:
+		case 9:
+		case 10:
+		case 11:
+		case 12:
+		case 16:
+		case 17:
+		case 18:
+		case 19:
+		case 24:
+		case 25:
+		case 26:
+		case 27:
+			return P(unidentified)(ctx);
+		case 4:
+		{
+			if ((op & 0xff0fff0) == 0x1e0fc90) {
+				goto insn_GPR_Rt_addr_offset_none_addr_S_3_STL; /* 0x01e0fc90 | 0xf00f000f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 5:
+		case 7:
+		case 13:
+		case 15:
+		case 21:
+		case 23:
+		case 29:
+		case 31:
+		{
+			if ((op & 0xf3000b0) == 0x12000b0) {
+				goto insn_GPR_Rt_addrmode3_pre_addr_S_2_STRD_PRE; /* 0x012000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 6:
+		case 14:
+		case 22:
+		case 30:
+		{
+			if ((op & 0xf2000f0) == 0x12000d0) {
+				goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x012000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 20:
+		case 28:
+		{
+			if ((op & 0xff00ef0) == 0x1e00e90) {
+				goto insn_GPR_Rt_addr_offset_none_addr_unk_Rd_S_6_STLEX; /* 0x01e00e90 | 0xf00ff10f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rt_addrmode_imm12_pre_addr_S_2_STRB_PRE_IMM; /* 0x05200000 | 0xf0cfffff */
+		case 1:
+		{
+			if ((op & 0xf300010) == 0x7200000) {
+				goto insn_GPR_Rt_ldst_so_reg_addr_S_2_STRB_PRE_REG; /* 0x07200000 | 0xf0cfffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 2:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rn_reglist_regs_S_16_STMDA; /* 0x08000000 | 0xf1efffff */
+		case 1:
+			goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
+		}
+	}
+	case 3:
+	{
+		if ((op & 0xf300000) == 0xd200000) {
+			goto insn_addrmode5_pre_addr_S_4_STC2L_PRE; /* 0x0d200000 | 0xf0cfffff */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+case 31:
+{
+	switch ((op >> 26) & 0x3) {
+	case 0:
+	{
+		switch ((op >> 5) & 0x1f) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 8:
+		case 9:
+		case 10:
+		case 11:
+		case 12:
+		case 16:
+		case 17:
+		case 18:
+		case 19:
+		case 24:
+		case 25:
+		case 26:
+		case 27:
+			return P(unidentified)(ctx);
+		case 4:
+		{
+			if ((op & 0xff00fff) == 0x1f00c9f) {
+				goto insn_addr_offset_none_addr_unk_Rt_13_LDA; /* 0x01f00c9f | 0xf00ff000 */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 5:
+		case 7:
+		case 13:
+		case 15:
+		case 21:
+		case 23:
+		case 29:
+		case 31:
+		{
+			if ((op & 0xf3000b0) == 0x13000b0) {
+				goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x013000b0 | 0xf0cfff4f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 6:
+		case 14:
+		case 22:
+		case 30:
+		{
+			if ((op & 0xf2000f0) == 0x12000d0) {
+				goto insn_addrmode3_pre_addr_unk_Rt_4_LDRD_PRE; /* 0x012000d0 | 0xf0dfff0f */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		case 20:
+		case 28:
+		{
+			if ((op & 0xfb00eff) == 0x1b00e9f) {
+				goto insn_addr_offset_none_addr_unk_Rt_13_LDA; /* 0x01b00e9f | 0xf04ff100 */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 1:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_addrmode_imm12_pre_addr_unk_Rt_2_LDRB_PRE_IMM; /* 0x05300000 | 0xf0cfffff */
+		case 1:
+		{
+			if ((op & 0xf300010) == 0x7300000) {
+				goto insn_ldst_so_reg_addr_unk_Rt_2_LDRB_PRE_REG; /* 0x07300000 | 0xf0cfffef */
+			} else {
+				return P(unidentified)(ctx);
+			}
+		}
+		}
+	}
+	case 2:
+	{
+		switch ((op >> 25) & 0x1) {
+		case 0:
+			goto insn_GPR_Rn_reglist_regs_16_LDMDA; /* 0x08100000 | 0xf1efffff */
+		case 1:
+			goto insn_bl_target_func_2_BL; /* 0x0b000000 | 0xf0ffffff */
+		}
+	}
+	case 3:
+	{
+		if ((op & 0xf300000) == 0xd300000) {
+			goto insn_addrmode5_pre_addr_4_LDC2L_PRE; /* 0x0d300000 | 0xf0cfffff */
+		} else {
+			return P(unidentified)(ctx);
+		}
+	}
+	}
+}
+}
 /*
 static INLINE tdis_ret P(GPRPairOp_Rt_addr_offset_none_addr_unk_Rd_S_2_STLEXD)(struct bitslice ctx, struct bitslice Rt, struct bitslice Rd, struct bitslice addr) {}
 static INLINE tdis_ret P(GPR_Rm_unk_Rd_1_MOVr)(struct bitslice ctx, struct bitslice Rm, struct bitslice Rd) {}
@@ -1976,4 +2213,3 @@ static INLINE tdis_ret P(tcGPR_Rm_unk_Rd_1_MOVr_TC)(struct bitslice ctx, struct 
 static INLINE tdis_ret P(unk_Rd_5_MOVTi16)(struct bitslice ctx, struct bitslice Rd) {}
 static INLINE tdis_ret P(unk_Rt_13_MRC)(struct bitslice ctx, struct bitslice Rt) {}
 */
-

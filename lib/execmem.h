@@ -11,12 +11,13 @@ void execmem_free(void *page, void *opt);
  * sense that it will be called on any thread which executed any of the old
  * instructions in the write region.
  * Oh, and it might mutate 'writes' (to sort it). */
-struct execmem_foreign_write {
-    void *dst;
-    const void *src;
-    size_t len;
-    void *opt;
+struct execmem_foreign_write
+{
+	void *dst;
+	const void *src;
+	size_t len;
+	void *opt;
 };
 typedef uintptr_t (*execmem_pc_patch_callback)(void *ctx, uintptr_t pc);
 int execmem_foreign_write_with_pc_patch(struct execmem_foreign_write *writes,
-                                        size_t nwrites);
+										size_t nwrites);

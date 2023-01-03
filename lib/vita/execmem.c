@@ -59,19 +59,18 @@ const int g_exe_slab_item_size = PATCH_ITEM_SIZE > sizeof(tai_hook_t) ? PATCH_IT
  * @return     `SUBSTITUTE_OK` or `SUBSTITUTE_ERR_VM` if out of memory
  */
 int execmem_alloc_unsealed(UNUSED uintptr_t hint, void **ptr_p, uintptr_t *vma_p,
-                           size_t *size_p, void *opt)
-{
-    struct slab_chain *slab = (struct slab_chain *)opt;
+						   size_t *size_p, void *opt) {
+	struct slab_chain *slab = (struct slab_chain *)opt;
 
-    LOG("Allocating exec ptr for pid %d", slab->pid);
-    *ptr_p = slab_alloc(slab, vma_p);
-    *size_p = PATCH_ITEM_SIZE;
-    LOG("Got %p, sized %x", *ptr_p, *size_p);
-    if (*ptr_p == NULL) {
-        return SUBSTITUTE_ERR_VM;
-    } else {
-        return SUBSTITUTE_OK;
-    }
+	LOG("Allocating exec ptr for pid %d", slab->pid);
+	*ptr_p = slab_alloc(slab, vma_p);
+	*size_p = PATCH_ITEM_SIZE;
+	LOG("Got %p, sized %x", *ptr_p, *size_p);
+	if (*ptr_p == NULL) {
+		return SUBSTITUTE_ERR_VM;
+	} else {
+		return SUBSTITUTE_OK;
+	}
 }
 
 /**
@@ -82,19 +81,18 @@ int execmem_alloc_unsealed(UNUSED uintptr_t hint, void **ptr_p, uintptr_t *vma_p
  *
  * @return     `SUBSTITUTE_OK`
  */
-int execmem_seal(void *ptr, void *opt)
-{
-    uintptr_t vma;
-    struct slab_chain *slab = (struct slab_chain *)opt;
+int execmem_seal(void *ptr, void *opt) {
+	uintptr_t vma;
+	struct slab_chain *slab = (struct slab_chain *)opt;
 
-    LOG("Sealing exec ptr %p", ptr);
-    vma = slab_getmirror(slab, ptr);
-    LOG("mirror addr %p", vma);
+	LOG("Sealing exec ptr %p", ptr);
+	vma = slab_getmirror(slab, ptr);
+	LOG("mirror addr %p", vma);
 
-    cache_flush(KERNEL_PID, (uintptr_t)ptr, PATCH_ITEM_SIZE);
-    cache_flush(slab->pid, vma, PATCH_ITEM_SIZE);
+	cache_flush(KERNEL_PID, (uintptr_t)ptr, PATCH_ITEM_SIZE);
+	cache_flush(slab->pid, vma, PATCH_ITEM_SIZE);
 
-    return SUBSTITUTE_OK;
+	return SUBSTITUTE_OK;
 }
 
 /**
@@ -103,11 +101,10 @@ int execmem_seal(void *ptr, void *opt)
  * @param      ptr   The writable pointer
  * @param      opt   A `tai_substitute_args_t` structure
  */
-void execmem_free(void *ptr, void *opt)
-{
-    struct slab_chain *slab = (struct slab_chain *)opt;
-    LOG("Freeing exec ptr %p", ptr);
-    slab_free(slab, ptr);
+void execmem_free(void *ptr, void *opt) {
+	struct slab_chain *slab = (struct slab_chain *)opt;
+	LOG("Freeing exec ptr %p", ptr);
+	slab_free(slab, ptr);
 }
 
 /**
@@ -119,23 +116,22 @@ void execmem_free(void *ptr, void *opt)
  * @return     `SUBSTITUTE_OK` or `SUBSTITUTE_ERR_VM` on failure
  */
 int execmem_foreign_write_with_pc_patch(struct execmem_foreign_write *writes,
-                                        size_t nwrites)
-{
-    LOG("Patching exec memory: %d", nwrites);
-    for (int i = 0; i < nwrites; i++) {
-        struct slab_chain *slab = (struct slab_chain *)writes[i].opt;
-        SceUID pid = slab->pid;
-        if (pid == SHARED_PID) {
-            pid = ksceKernelGetProcessId();
-            LOG("ksceKernelGetProcessId: %x", pid);
-        }
-        LOG("PID:%x, dst:%p, src:%p, len:%x", pid, writes[i].dst, writes[i].src, writes[i].len);
-        if (pid == KERNEL_PID) {
-            ksceKernelCpuUnrestrictedMemcpy(writes[i].dst, writes[i].src, writes[i].len);
-        } else {
-            ksceKernelProcMemcpyToUserRx(pid, (uintptr_t)writes[i].dst, writes[i].src, writes[i].len);
-        }
-        cache_flush(pid, (uintptr_t)writes[i].dst, writes[i].len);
-    }
-    return SUBSTITUTE_OK;
+										size_t nwrites) {
+	LOG("Patching exec memory: %d", nwrites);
+	for (int i = 0; i < nwrites; i++) {
+		struct slab_chain *slab = (struct slab_chain *)writes[i].opt;
+		SceUID pid = slab->pid;
+		if (pid == SHARED_PID) {
+			pid = ksceKernelGetProcessId();
+			LOG("ksceKernelGetProcessId: %x", pid);
+		}
+		LOG("PID:%x, dst:%p, src:%p, len:%x", pid, writes[i].dst, writes[i].src, writes[i].len);
+		if (pid == KERNEL_PID) {
+			ksceKernelCpuUnrestrictedMemcpy(writes[i].dst, writes[i].src, writes[i].len);
+		} else {
+			ksceKernelProcMemcpyToUserRx(pid, (uintptr_t)writes[i].dst, writes[i].src, writes[i].len);
+		}
+		cache_flush(pid, (uintptr_t)writes[i].dst, writes[i].len);
+	}
+	return SUBSTITUTE_OK;
 }

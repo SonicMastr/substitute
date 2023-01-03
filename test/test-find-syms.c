@@ -10,7 +10,7 @@ int main() {
 	assert(im);
 	const char *names[] = { "_absolute_from_gregorian" };
 	int (*f)(int);
-	assert(!substitute_find_private_syms(im, names, (void **) &f, 1));
+	assert(!substitute_find_private_syms(im, names, (void **)&f, 1));
 	assert(f);
 
 	assert(f(12345) < 0);

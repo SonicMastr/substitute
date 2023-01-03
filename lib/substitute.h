@@ -1,7 +1,7 @@
 /*
-    libsubstitute - https://github.com/comex/substitute
-    This header file itself is in the public domain (or in any jusrisdiction
-    where the former is ineffective, CC0 1.0).
+	libsubstitute - https://github.com/comex/substitute
+	This header file itself is in the public domain (or in any jusrisdiction
+	where the former is ineffective, CC0 1.0).
 */
 
 #pragma once
@@ -15,112 +15,116 @@ extern "C" {
 #endif
 
 /* Error codes */
-enum {
-    /* TODO add numbers */
-    SUBSTITUTE_OK = 0,
+enum
+{
+	/* TODO add numbers */
+	SUBSTITUTE_OK = 0,
 
-    /* substitute_hook_functions: can't patch a function because it's too short-
-     * i.e. there's an unconditional return instruction inside the patch region
-     * (and not at its end) */
-    SUBSTITUTE_ERR_FUNC_TOO_SHORT = 1,
+	/* substitute_hook_functions: can't patch a function because it's too short-
+	 * i.e. there's an unconditional return instruction inside the patch region
+	 * (and not at its end) */
+	SUBSTITUTE_ERR_FUNC_TOO_SHORT = 1,
 
-    /* substitute_hook_functions: can't patch a function because one of the
-     * instructions within the patch region is one of a few special problematic
-     * cases - if you get this on real code, the library should probably be
-     * updated to handle that case properly */
-    SUBSTITUTE_ERR_FUNC_BAD_INSN_AT_START = 2,
+	/* substitute_hook_functions: can't patch a function because one of the
+	 * instructions within the patch region is one of a few special problematic
+	 * cases - if you get this on real code, the library should probably be
+	 * updated to handle that case properly */
+	SUBSTITUTE_ERR_FUNC_BAD_INSN_AT_START = 2,
 
-    /* substitute_hook_functions: can't patch a function because one of the
-     * instructions within the patch region (other than the last instruction)
-     * is a call - meaning that a return address within the region (i.e. about
-     * to point to clobbered code) could be on some thread's stack, where we
-     * can't easily find and patch it.  This check is skipped if
-     * SUBSTITUTE_NO_THREAD_SAFETY is set. */
-    SUBSTITUTE_ERR_FUNC_CALLS_AT_START = 3,
+	/* substitute_hook_functions: can't patch a function because one of the
+	 * instructions within the patch region (other than the last instruction)
+	 * is a call - meaning that a return address within the region (i.e. about
+	 * to point to clobbered code) could be on some thread's stack, where we
+	 * can't easily find and patch it.  This check is skipped if
+	 * SUBSTITUTE_NO_THREAD_SAFETY is set. */
+	SUBSTITUTE_ERR_FUNC_CALLS_AT_START = 3,
 
-    /* substitute_hook_functions: can't patch a function because the (somewhat
-     * cursory) jump analysis found a jump later in the function to within the
-     * patch region at the beginning */
-    SUBSTITUTE_ERR_FUNC_JUMPS_TO_START = 4,
+	/* substitute_hook_functions: can't patch a function because the (somewhat
+	 * cursory) jump analysis found a jump later in the function to within the
+	 * patch region at the beginning */
+	SUBSTITUTE_ERR_FUNC_JUMPS_TO_START = 4,
 
-    /* out of memory */
-    SUBSTITUTE_ERR_OOM = 5,
+	/* out of memory */
+	SUBSTITUTE_ERR_OOM = 5,
 
-    /* substitute_hook_functions:    mmap, mprotect, vm_copy, or
-     *                               vm_remap failure
-     * substitute_hook_objc_message: vm_remap failure
-     * Most likely to come up with substitute_hook_functions if the kernel is
-     * preventing pages from being marked executable. */
-    SUBSTITUTE_ERR_VM = 6,
+	/* substitute_hook_functions:    mmap, mprotect, vm_copy, or
+	 *                               vm_remap failure
+	 * substitute_hook_objc_message: vm_remap failure
+	 * Most likely to come up with substitute_hook_functions if the kernel is
+	 * preventing pages from being marked executable. */
+	SUBSTITUTE_ERR_VM = 6,
 
-    /* substitute_hook_functions: not on the main thread, and you did not pass
-     * SUBSTITUTE_NO_THREAD_SAFETY */
-    SUBSTITUTE_ERR_NOT_ON_MAIN_THREAD = 7,
+	/* substitute_hook_functions: not on the main thread, and you did not pass
+	 * SUBSTITUTE_NO_THREAD_SAFETY */
+	SUBSTITUTE_ERR_NOT_ON_MAIN_THREAD = 7,
 
-    /* substitute_hook_functions: when trying to patch the PC of other threads
-     * (in case they were inside the patched prolog when they were suspended),
-     * found a PC that was in the patch region but seemingly not at an
-     * instruction boundary
-     * The hooks were otherwise completed, but the thread in question will
-     * probably crash now that its code has changed under it. */
-    SUBSTITUTE_ERR_UNEXPECTED_PC_ON_OTHER_THREAD = 8,
+	/* substitute_hook_functions: when trying to patch the PC of other threads
+	 * (in case they were inside the patched prolog when they were suspended),
+	 * found a PC that was in the patch region but seemingly not at an
+	 * instruction boundary
+	 * The hooks were otherwise completed, but the thread in question will
+	 * probably crash now that its code has changed under it. */
+	SUBSTITUTE_ERR_UNEXPECTED_PC_ON_OTHER_THREAD = 8,
 
-    /* substitute_hook_functions: destination was out of range, and mmap
-     * wouldn't give us a trampoline in range */
-    SUBSTITUTE_ERR_OUT_OF_RANGE = 9,
+	/* substitute_hook_functions: destination was out of range, and mmap
+	 * wouldn't give us a trampoline in range */
+	SUBSTITUTE_ERR_OUT_OF_RANGE = 9,
 
-    /* substitute_interpose_imports: couldn't redo relocation for an import
-     * because the type was unknown */
-    SUBSTITUTE_ERR_UNKNOWN_RELOCATION_TYPE = 10,
+	/* substitute_interpose_imports: couldn't redo relocation for an import
+	 * because the type was unknown */
+	SUBSTITUTE_ERR_UNKNOWN_RELOCATION_TYPE = 10,
 
-    /* substitute_hook_objc_message: no such selector existed in the class's
-     * inheritance tree */
-    SUBSTITUTE_ERR_NO_SUCH_SELECTOR = 11,
+	/* substitute_hook_objc_message: no such selector existed in the class's
+	 * inheritance tree */
+	SUBSTITUTE_ERR_NO_SUCH_SELECTOR = 11,
 
-    /* substitute_hook_functions: OS error suspending other threads */
-    SUBSTITUTE_ERR_ADJUSTING_THREADS = 12,
+	/* substitute_hook_functions: OS error suspending other threads */
+	SUBSTITUTE_ERR_ADJUSTING_THREADS = 12,
 
-    _SUBSTITUTE_CURRENT_MAX_ERR_PLUS_ONE,
+	_SUBSTITUTE_CURRENT_MAX_ERR_PLUS_ONE,
 };
 
 /* Get a string representation for a SUBSTITUTE_* error code. */
 const char *substitute_strerror(int err);
 
-struct substitute_function_hook {
-    /* The function to hook.  (On ARM, Thumb functions are indicated as usual
-     * for function pointers.) */
-    void *function;
-    /* The replacement function. */
-    void *replacement;
-    /* Optional: out *pointer* to function pointer to call old implementation
-     * (i.e. given 'void (*old_foo)(...);', pass &old_foo) */
-    void *old_ptr;
-    /* Currently unused; pass 0.  (Protip: When using C {} struct initializer
-     * syntax, you can just omit this.) */
-    int options;
-    /* Any platform specific auxiliary data. The data pointed to must remain 
-     * valid until after the hook is freed! */
-    void *opt;
+struct substitute_function_hook
+{
+	/* The function to hook.  (On ARM, Thumb functions are indicated as usual
+	 * for function pointers.) */
+	void *function;
+	/* The replacement function. */
+	void *replacement;
+	/* Optional: out *pointer* to function pointer to call old implementation
+	 * (i.e. given 'void (*old_foo)(...);', pass &old_foo) */
+	void *old_ptr;
+	/* Currently unused; pass 0.  (Protip: When using C {} struct initializer
+	 * syntax, you can just omit this.) */
+	int options;
+	/* Any platform specific auxiliary data. The data pointed to must remain
+	 * valid until after the hook is freed! */
+	void *opt;
 };
 
-struct substitute_function_hook_record {
-    /* Function that was originally hooked. */
-    void *function;
-    /* Any platform specific auxiliary data copied from the hook */
-    void *opt;
-    /** Should at least be MAX_JUMP_PATCH_SIZE for your platform */
-    size_t buffer_size;
-    /** Store the original code. Must be large enough to hold MAX_JUMP_PATCH_SIZE
-     * for whatever platform your are targeting! */
-    char saved_buffer[];
+struct substitute_function_hook_record
+{
+	/* Function that was originally hooked. */
+	void *function;
+	/* Any platform specific auxiliary data copied from the hook */
+	void *opt;
+	/** Should at least be MAX_JUMP_PATCH_SIZE for your platform */
+	size_t buffer_size;
+	/** Store the original code. Must be large enough to hold MAX_JUMP_PATCH_SIZE
+	 * for whatever platform your are targeting! */
+	char saved_buffer[];
 };
 
 /* substitute_hook_functions options */
-enum {
+enum
+{
 #ifndef NO_PTHREADS
-    SUBSTITUTE_NO_THREAD_SAFETY = 1, 
+	SUBSTITUTE_NO_THREAD_SAFETY = 1,
 #endif
-    SUBSTITUTE_RELAXED = 2, 
+	SUBSTITUTE_RELAXED = 2,
 };
 
 /* Patch the machine code of the specified functions to redirect them to the
@@ -142,8 +146,8 @@ enum {
  *
  * You can disable the main thread check and all synchronization by passing
  * SUBSTITUTE_NO_THREAD_SAFETY.
- * 
- * You can relax the disassembly engine (at the risk of possible incorrect 
+ *
+ * You can relax the disassembly engine (at the risk of possible incorrect
  * results) to be compatible with more functions by passing SUBSTITUTE_RELAXED.
  *
  * Why not just use a mutex to prevent deadlock?  That would work between
@@ -169,9 +173,9 @@ enum {
  * @return   SUBSTITUTE_OK, or any of most of the SUBSTITUTE_ERR_*
  */
 int substitute_hook_functions(const struct substitute_function_hook *hooks,
-                              size_t nhooks,
-                              struct substitute_function_hook_record **recordp,
-                              int options);
+							  size_t nhooks,
+							  struct substitute_function_hook_record **recordp,
+							  int options);
 
 /**
  * @brief      Frees hooks and restores original code.
@@ -181,8 +185,8 @@ int substitute_hook_functions(const struct substitute_function_hook *hooks,
  *
  * @return     SUBSTITUTE_OK, or any of most of the SUBSTITUTE_ERR_*
  */
-int substitute_free_hooks(struct substitute_function_hook_record *records, 
-                          size_t nhooks);
+int substitute_free_hooks(struct substitute_function_hook_record *records,
+						  size_t nhooks);
 
 #ifndef NO_DYNAMIC_LINKER_STUFF /* declare dynamic linker-related stuff? */
 
@@ -197,13 +201,14 @@ typedef struct nlist substitute_sym;
 #error No definition for substitute_sym!
 #endif
 
-struct substitute_image {
+struct substitute_image
+{
 #ifdef __APPLE__
-    intptr_t slide;
-    void *dlhandle;
-    const void *image_header;
+	intptr_t slide;
+	void *dlhandle;
+	const void *image_header;
 #endif
-    /* possibly private fields... */
+	/* possibly private fields... */
 };
 
 /* Look up an image currently loaded into the process.
@@ -232,9 +237,9 @@ void substitute_close_image(struct substitute_image *handle);
  * @return SUBSTITUTE_OK (maybe errors in the future)
  */
 int substitute_find_private_syms(struct substitute_image *handle,
-                                 const char **__restrict names,
-                                 void **__restrict syms,
-                                 size_t nsyms);
+								 const char **__restrict names,
+								 void **__restrict syms,
+								 size_t nsyms);
 
 /* Get a pointer corresponding to a loaded symbol table entry.
  * @handle handle containing the symbol
@@ -244,19 +249,20 @@ int substitute_find_private_syms(struct substitute_image *handle,
  */
 void *substitute_sym_to_ptr(struct substitute_image *handle, substitute_sym *sym);
 
-struct substitute_import_hook {
-    /* The symbol name - this is raw, so C++ symbols are mangled, and on OS X
-     * most symbols have '_' prepended. */
-    const char *name;
-    /* The new import address. */
-    void *replacement;
-    /* Optional: out pointer to old value.  if there are multiple imports for
-     * the same symbol, only one address is returned (hopefully they are all
-     * equal) */
-    void *old_ptr;
-    /* Currently unused; pass 0.  (Protip: When using C {} struct initializer
-     * syntax, you can just omit this.) */
-    int options;
+struct substitute_import_hook
+{
+	/* The symbol name - this is raw, so C++ symbols are mangled, and on OS X
+	 * most symbols have '_' prepended. */
+	const char *name;
+	/* The new import address. */
+	void *replacement;
+	/* Optional: out pointer to old value.  if there are multiple imports for
+	 * the same symbol, only one address is returned (hopefully they are all
+	 * equal) */
+	void *old_ptr;
+	/* Currently unused; pass 0.  (Protip: When using C {} struct initializer
+	 * syntax, you can just omit this.) */
+	int options;
 };
 
 /* Directly modify the GOT/PLT entries from a specified image corresponding to
@@ -296,11 +302,10 @@ struct substitute_import_hook {
  */
 struct substitute_import_hook_record;
 int substitute_interpose_imports(const struct substitute_image *handle,
-                                 const struct substitute_import_hook *hooks,
-                                 size_t nhooks,
-                                 struct substitute_import_hook_record **recordp,
-                                 int options);
-
+								 const struct substitute_import_hook *hooks,
+								 size_t nhooks,
+								 struct substitute_import_hook_record **recordp,
+								 int options);
 
 #endif /* NO_DYNAMIC_LINKER_STUFF */
 
@@ -330,7 +335,7 @@ int substitute_interpose_imports(const struct substitute_image *handle,
  *                   SUBSTITUTE_ERR_NO_SUCH_SELECTOR
  */
 int substitute_hook_objc_message(Class klass, SEL selector, void *replacement,
-                                 void *old_ptr, bool *created_imp_ptr);
+								 void *old_ptr, bool *created_imp_ptr);
 
 void substitute_free_created_imp(IMP imp);
 #endif

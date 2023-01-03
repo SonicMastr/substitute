@@ -4,15 +4,15 @@
 #define MAX_JUMP_PATCH_SIZE 10
 
 static inline int jump_patch_size(uint_tptr pc,
-                                  UNUSED uint_tptr dpc,
-                                  UNUSED struct arch_dis_ctx arch,
-                                  UNUSED bool force) {
-    return (pc & 2) ? 10 : 8;
+								  UNUSED uint_tptr dpc,
+								  UNUSED struct arch_dis_ctx arch,
+								  UNUSED bool force) {
+	return (pc & 2) ? 10 : 8;
 }
 
 static inline void make_jump_patch(void **codep, uint_tptr pc,
-                                   uint_tptr dpc,
-                                   struct arch_dis_ctx arch) {
-    struct assemble_ctx actx = {codep, *codep, pc, arch.pc_low_bit, 0xe};
-    LDR_PC(actx, dpc);
+								   uint_tptr dpc,
+								   struct arch_dis_ctx arch) {
+	struct assemble_ctx actx = { codep, *codep, pc, arch.pc_low_bit, 0xe };
+	LDR_PC(actx, dpc);
 }

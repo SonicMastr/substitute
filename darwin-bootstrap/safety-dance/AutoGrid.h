@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AutoGrid : UIView {
-    NSArray *views;
-    UIScrollView *scrollView;
+@interface AutoGrid : UIView
+{
+	NSArray *views;
+	UIScrollView *scrollView;
 }
 - (void)setViews:(NSArray *)views;
 

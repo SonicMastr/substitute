@@ -5,7 +5,7 @@
 #include <mach-o/dyld.h>
 #include <assert.h>
 
-static void *getpid_plus = (void *) getpid + 5;
+static void *getpid_plus = (void *)getpid + 5;
 
 static pid_t (*old_getpid)();
 static pid_t my_getpid() {
@@ -20,16 +20,16 @@ int main() {
 	void *handle = substitute_open_image(self);
 	assert(handle);
 	struct substitute_import_hook hooks[] = {
-		{"_getpid", my_getpid, &old_getpid},
-		{"_getgid", my_getgid, NULL},
+		{ "_getpid", my_getpid, &old_getpid },
+		{ "_getgid", my_getgid, NULL },
 
 	};
 	pid_t (*gp)() = getpid_plus - 5;
-	printf("original pid: %d\n", (int) gp());
-	substitute_interpose_imports(handle, hooks, sizeof(hooks)/sizeof(*hooks), NULL, 0);
+	printf("original pid: %d\n", (int)gp());
+	substitute_interpose_imports(handle, hooks, sizeof(hooks) / sizeof(*hooks), NULL, 0);
 	gp = getpid_plus - 5;
-	printf("new pid: %d\n", (int) gp());
-	printf("new gid: %d\n", (int) getgid());
+	printf("new pid: %d\n", (int)gp());
+	printf("new gid: %d\n", (int)getgid());
 
 	substitute_close_image(handle);
 }
