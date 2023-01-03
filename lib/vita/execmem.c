@@ -7,7 +7,7 @@
 #include <psp2kern/kernel/threadmgr.h>
 #include "patches.h"
 #include "slab.h"
-#include "taihen_internal.h"
+#include "paihen_internal.h"
 
 /** The size of each trampoline allocation. We use it for outro and optional
  * intro. Realistically, we do not use an intro.
