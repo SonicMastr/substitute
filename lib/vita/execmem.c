@@ -7,7 +7,7 @@
 #include <psp2kern/kernel/threadmgr.h>
 #include "patches.h"
 #include "slab.h"
-#include "paihen_internal.h"
+#include "kaihen_internal.h"
 
 /** The size of each trampoline allocation. We use it for outro and optional
  * intro. Realistically, we do not use an intro.
@@ -19,11 +19,11 @@
 #endif
 
 /** We use the slab allocator for both these things. Choose the larger of the two as size. */
-const int g_exe_slab_item_size = PATCH_ITEM_SIZE > sizeof(pai_hook_t) ? PATCH_ITEM_SIZE : sizeof(pai_hook_t);
+const int g_exe_slab_item_size = PATCH_ITEM_SIZE > sizeof(kai_hook_t) ? PATCH_ITEM_SIZE : sizeof(kai_hook_t);
 
 /**
  * The reason we use the same slab allocator for patches (sized 216 max) and
- * pai_hook_t (size 16) is because in both cases, we need to allocate memory in
+ * kai_hook_t (size 16) is because in both cases, we need to allocate memory in
  * the user's memory space. One option is to use two different slabs and that
  * would make more sense. However my prediction is that there is not a large
  * number of hooks per process, so the minimum size for the slab (0x1000 bytes)
@@ -53,7 +53,7 @@ const int g_exe_slab_item_size = PATCH_ITEM_SIZE > sizeof(pai_hook_t) ? PATCH_IT
  * @param      ptr_p      The writable pointer
  * @param      vma_p      The executable pointer address
  * @param      size_p     The size of the allocation. Always `SLAB_ITEM_SIZE`.
- * @param      opt        A `pai_substitute_args_t` structure
+ * @param      opt        A `kai_substitute_args_t` structure
  * @param[in]  hint  Unused
  *
  * @return     `SUBSTITUTE_OK` or `SUBSTITUTE_ERR_VM` if out of memory
@@ -77,7 +77,7 @@ int execmem_alloc_unsealed(UNUSED uintptr_t hint, void **ptr_p, uintptr_t *vma_p
  * @brief      Flushes icache
  *
  * @param      ptr   Unused
- * @param      opt   A `pai_substitute_args_t` structure
+ * @param      opt   A `kai_substitute_args_t` structure
  *
  * @return     `SUBSTITUTE_OK`
  */
@@ -99,7 +99,7 @@ int execmem_seal(void *ptr, void *opt) {
  * @brief      Frees executable memory from slab allocator
  *
  * @param      ptr   The writable pointer
- * @param      opt   A `pai_substitute_args_t` structure
+ * @param      opt   A `kai_substitute_args_t` structure
  */
 void execmem_free(void *ptr, void *opt) {
 	struct slab_chain *slab = (struct slab_chain *)opt;
