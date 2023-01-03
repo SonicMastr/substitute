@@ -1,13 +1,13 @@
 #include "substitute.h"
 #include "dis.h"
 #include "execmem.h"
-#include stringify(TARGET_DIR/jump-patch.h)
+#include "arm/jump-patch.h"
 #include <psp2kern/kernel/cpu.h>
 #include <psp2kern/kernel/sysmem.h>
 #include <psp2kern/kernel/threadmgr.h>
-#include "../../../patches.h"
-#include "../../../slab.h"
-#include "../../../taihen_internal.h"
+#include "patches.h"
+#include "slab.h"
+#include "taihen_internal.h"
 
 /** The size of each trampoline allocation. We use it for outro and optional
  * intro. Realistically, we do not use an intro.
@@ -58,8 +58,9 @@ const int g_exe_slab_item_size = PATCH_ITEM_SIZE > sizeof(tai_hook_t) ? PATCH_IT
  *
  * @return     `SUBSTITUTE_OK` or `SUBSTITUTE_ERR_VM` if out of memory
  */
-int execmem_alloc_unsealed(UNUSED uintptr_t hint, void **ptr_p, uintptr_t *vma_p, 
-                           size_t *size_p, void *opt) {
+int execmem_alloc_unsealed(UNUSED uintptr_t hint, void **ptr_p, uintptr_t *vma_p,
+                           size_t *size_p, void *opt)
+{
     struct slab_chain *slab = (struct slab_chain *)opt;
 
     LOG("Allocating exec ptr for pid %d", slab->pid);
@@ -81,7 +82,8 @@ int execmem_alloc_unsealed(UNUSED uintptr_t hint, void **ptr_p, uintptr_t *vma_p
  *
  * @return     `SUBSTITUTE_OK`
  */
-int execmem_seal(void *ptr, void *opt) {
+int execmem_seal(void *ptr, void *opt)
+{
     uintptr_t vma;
     struct slab_chain *slab = (struct slab_chain *)opt;
 
@@ -101,7 +103,8 @@ int execmem_seal(void *ptr, void *opt) {
  * @param      ptr   The writable pointer
  * @param      opt   A `tai_substitute_args_t` structure
  */
-void execmem_free(void *ptr, void *opt) {
+void execmem_free(void *ptr, void *opt)
+{
     struct slab_chain *slab = (struct slab_chain *)opt;
     LOG("Freeing exec ptr %p", ptr);
     slab_free(slab, ptr);
@@ -116,7 +119,8 @@ void execmem_free(void *ptr, void *opt) {
  * @return     `SUBSTITUTE_OK` or `SUBSTITUTE_ERR_VM` on failure
  */
 int execmem_foreign_write_with_pc_patch(struct execmem_foreign_write *writes,
-                                        size_t nwrites) {
+                                        size_t nwrites)
+{
     LOG("Patching exec memory: %d", nwrites);
     for (int i = 0; i < nwrites; i++) {
         struct slab_chain *slab = (struct slab_chain *)writes[i].opt;
