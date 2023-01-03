@@ -147,7 +147,7 @@ int transform_dis_main(const void *restrict code_ptr,
 	return SUBSTITUTE_OK;
 }
 
-#include stringify(TARGET_DIR / arch - transform - dis.inc.h)
-#include stringify(TARGET_DIR / dis - main.inc.h)
+#include "arm/arch-transform-dis.inc.h"
+#include "arm/dis-main.inc.h"
 
 #endif /* TARGET_DIS_SUPPORTED */

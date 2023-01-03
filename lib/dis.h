@@ -185,4 +185,4 @@ struct dis_ctx_base
 	int op_size, newop_size;
 };
 
-#include stringify(TARGET_DIR / arch - dis.h)
+#include "arm/arch-dis.h"

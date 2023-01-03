@@ -170,5 +170,5 @@ fail:
 	return ret;
 }
 
-#include stringify(TARGET_DIR / dis - main.inc.h)
+#include "arm/dis-main.inc.h"
 #endif /* TARGET_DIS_SUPPORTED */

@@ -4,7 +4,7 @@
 #include "jump-dis.h"
 #include "transform-dis.h"
 #include "execmem.h"
-#include stringify(TARGET_DIR / jump - patch.h)
+#include "arm/jump-patch.h"
 #include <stdlib.h>
 #include <alloca.h>
 #ifndef NO_PTHREADS

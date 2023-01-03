@@ -63,7 +63,7 @@ typedef struct section section_x;
 #endif
 #define stringify_(x) #x
 #define stringify(x)  stringify_(x)
-#include stringify(TARGET_DIR / misc.h)
+#include "arm/misc.h"
 
 #if TARGET_POINTER_SIZE == 8
 typedef uint64_t uint_tptr;
